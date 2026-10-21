@@ -1,0 +1,102 @@
+STAAD SPACE
+* ============================================================
+* STAAD.Pro IRC Live Load Studio — generated input
+* Project : Sample: 40 m two-lane bridge (SAMPLE-001)
+* Workflow: EXPLICIT STATIC VEHICLE PLACEMENT
+* Target  : STAAD.Pro 2022 — adapter status: unverified
+* Mapping : Xd → +X, Zd → +Z, Yd → +Y, origin (0, 0, 0) m, rotation 0°
+* Units   : metres and kilonewtons
+* ------------------------------------------------------------
+* NOTICE  : generated syntax has not been executed in a licensed STAAD.Pro
+*           installation. Verify before design use. See README release gates.
+* Static case: vehicle wheel/track loads transferred to the supplied
+* structural model. Verify the transfer method and joint forces.
+* ============================================================
+UNIT METER KN
+
+* Structural model: 119 joints, 214 members, 96 quads (Sample: 17 × 7 joint quad grillage, 40 m × 10.8 m)
+* Load transfer : four-node-bilinear
+* Vehicle cases : 3 emitted, 0 rejected
+
+* V1: IRC Class A | 554 kN | reference point: vehicle-centre
+* Mapping: Xd→+X, Zd→+Z, Yd→+Y; origin (0, 0, 0) m.
+* Transfer method: four-node-bilinear; 16 wheel/track load points → 27 joints; applied 554 kN, emitted 554 kN.
+LOAD 301 LOADTYPE LIVE TITLE CLASS A V1 POS
+JOINT LOAD
+11 FY -2.295
+12 FY -9.18
+13 FY -6.885
+18 FY -4.455
+19 FY -17.82
+20 FY -13.365
+25 FY -17.1
+26 FY -68.4
+27 FY -51.3
+32 FY -11.4
+33 FY -45.6
+34 FY -34.2
+39 FY -5.44
+40 FY -21.76
+41 FY -16.32
+46 FY -6.8
+47 FY -27.2
+48 FY -20.4
+53 FY -6.8
+54 FY -27.2
+55 FY -20.4
+60 FY -6.8
+61 FY -27.2
+62 FY -20.4
+67 FY -8.16
+68 FY -32.64
+69 FY -24.48
+
+* V2: IRC Class 70R (wheeled) | 1000 kN | reference point: vehicle-centre
+* Mapping: Xd→+X, Zd→+Z, Yd→+Y; origin (0, 0, 0) m.
+* Transfer method: four-node-bilinear; 14 wheel/track load points → 21 joints; applied 1000 kN, emitted 1000 kN.
+LOAD 302 LOADTYPE LIVE TITLE 70R WHEELED V2 POS
+JOINT LOAD
+9 FY -22.3644
+10 FY -23.2711
+11 FY -8.7644
+16 FY -15.2604
+17 FY -15.8791
+18 FY -5.9804
+23 FY -68.672
+24 FY -71.456
+25 FY -26.912
+30 FY -75.8582
+31 FY -78.9336
+32 FY -29.7282
+37 FY -89.1782
+38 FY -92.7936
+39 FY -34.9482
+44 FY -83.028
+45 FY -86.394
+46 FY -32.538
+51 FY -56.7498
+52 FY -59.0504
+53 FY -22.2398
+
+* V3: IRC Class 70R (tracked) | 700 kN | reference point: vehicle-front
+* Mapping: Xd→+X, Zd→+Z, Yd→+Y; origin (0, 0, 0) m.
+* Transfer method: four-node-bilinear; 16 wheel/track load points → 12 joints; applied 700 kN, emitted 700 kN.
+* Edge clearance constraint: 1.2 m.
+LOAD 303 LOADTYPE LIVE TITLE 70R TRACKED V3 POS
+JOINT LOAD
+74 FY -18.3827
+75 FY -28.887
+76 FY -20.2584
+81 FY -96.6653
+82 FY -151.9026
+83 FY -106.5291
+88 FY -72.7982
+89 FY -114.3971
+90 FY -80.2266
+95 FY -2.7095
+96 FY -4.2577
+97 FY -2.9859
+
+* ------------------------------------------------------------
+* End of generated vehicle load input.
+* Independent engineering verification is required before use.

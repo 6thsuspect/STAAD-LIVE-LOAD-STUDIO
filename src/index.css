@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 text-slate-200 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "tnum";
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #24344a;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #33506e;
+    background-clip: content-box;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  ::selection {
+    background: rgba(56, 214, 230, 0.28);
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-lg border border-white/[0.07] bg-ink-900/80 shadow-panel;
+  }
+
+  .panel-header {
+    @apply flex items-center justify-between gap-2 border-b border-white/[0.06] px-3 py-2;
+  }
+
+  .panel-title {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400;
+  }
+
+  .field-label {
+    @apply text-[11px] font-medium text-slate-400;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-white/10 bg-ink-950/80 px-2.5 py-1.5 text-[13px] text-slate-100
+      outline-none transition placeholder:text-slate-600
+      focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/15 disabled:opacity-50;
+  }
+
+  .input-sm {
+    @apply rounded border border-white/10 bg-ink-950/80 px-1.5 py-1 text-[12px] text-slate-100 outline-none
+      focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/20;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-1.5 rounded-md border border-white/10
+      bg-ink-800 px-2.5 py-1.5 text-[12px] font-medium text-slate-200 transition
+      hover:border-white/20 hover:bg-ink-700 active:translate-y-px
+      disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink-800;
+  }
+
+  .btn-primary {
+    @apply border-cyan-500/40 bg-cyan-500/15 text-cyan-200 hover:border-cyan-400/60 hover:bg-cyan-500/25;
+  }
+
+  .btn-ghost {
+    @apply border-transparent bg-transparent text-slate-400 hover:border-white/10 hover:bg-white/5 hover:text-slate-200;
+  }
+
+  .btn-danger {
+    @apply border-signal-red/30 bg-signal-red/10 text-signal-red/90 hover:border-signal-red/50 hover:bg-signal-red/20;
+  }
+
+  .btn-xs {
+    @apply px-1.5 py-1 text-[11px];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide;
+  }
+
+  .mono {
+    font-variant-numeric: tabular-nums;
+    @apply font-mono;
+  }
+
+  .divider {
+    @apply h-px w-full bg-white/[0.06];
+  }
+
+  .stat {
+    @apply rounded-md border border-white/[0.06] bg-ink-950/50 px-2 py-1.5;
+  }
+
+  .stat-label {
+    @apply text-[10px] uppercase tracking-wider text-slate-500;
+  }
+
+  .stat-value {
+    @apply mono text-[13px] font-semibold text-slate-100;
+  }
+
+  .tab {
+    @apply relative flex items-center gap-2 whitespace-nowrap px-3 py-2.5 text-[12px] font-medium
+      text-slate-500 transition hover:text-slate-300;
+  }
+
+  .tab-active {
+    @apply text-cyan-300;
+  }
+
+  .tab-active::after {
+    content: "";
+    @apply absolute inset-x-2 -bottom-px h-[2px] rounded-full bg-cyan-400;
+  }
+
+  .row-hover {
+    @apply transition hover:bg-white/[0.03];
+  }
+
+  .scroll-area {
+    @apply overflow-y-auto overscroll-contain;
+  }
+}
+
+/* Canvas plan styling */
+.plan-grid {
+  /* widths are set as element attributes in screen-space units, never here */
+  stroke: rgba(120, 165, 210, 0.07);
+}
+
+.plan-deck {
+  fill: #0b1521;
+  stroke: rgba(120, 165, 210, 0.4);
+}
+
+.plan-surface {
+  fill: #13202e;
+  stroke: rgba(120, 165, 210, 0.28);
+}
+
+.plan-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  fill: #7f95ad;
+}
+
+.vehicle-body {
+  /* fill and opacity are set per element so renderers never disagree */
+  stroke-linejoin: round;
+}
+
+.vehicle-selected .vehicle-body {
+  stroke-width: 2.2;
+}
+
+.handle {
+  cursor: grab;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.syntax-gutter {
+  @apply select-none border-r border-white/[0.06] bg-ink-950/70 px-2 text-right text-[11px] leading-[18px] text-slate-600;
+}
+
+.syntax-line-number-active {
+  @apply bg-cyan-500/10 text-cyan-300;
+}
+
+.syntax-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 18px;
+  tab-size: 2;
+  white-space: pre;
+}
+
+.syntax-error-line {
+  background: rgba(255, 107, 107, 0.09);
+}
+
+.syntax-warning-line {
+  background: rgba(245, 181, 68, 0.08);
+}
