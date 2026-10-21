@@ -59,6 +59,33 @@ export function Field({
   );
 }
 
+/**
+ * Labelled group for controls that are not form fields (segmented switches,
+ * button rows). A `<label>` would become the accessible name of every button
+ * inside it, so the caption is a plain span here.
+ */
+export function FieldGroup({
+  label,
+  hint,
+  children,
+  className = "",
+}: {
+  label: React.ReactNode;
+  hint?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`block ${className}`} role="group" aria-label={typeof label === "string" ? label : undefined}>
+      <span className="field-label flex items-center justify-between gap-2">
+        <span>{label}</span>
+      </span>
+      <div className="mt-1">{children}</div>
+      {hint && <span className="mt-1 block text-[10.5px] leading-relaxed text-slate-500">{hint}</span>}
+    </div>
+  );
+}
+
 export function NumberField({
   value,
   onChange,
@@ -326,6 +353,7 @@ export function Segmented<T extends string>({
           key={option.value}
           type="button"
           title={option.title}
+          aria-pressed={value === option.value}
           onClick={() => onChange(option.value)}
           className={`rounded px-2 ${size === "sm" ? "py-0.5 text-[10.5px]" : "py-1 text-[11.5px]"} font-medium transition ${
             value === option.value ? "bg-cyan-500/20 text-cyan-200" : "text-slate-500 hover:text-slate-300"

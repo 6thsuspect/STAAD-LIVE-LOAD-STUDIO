@@ -3,6 +3,7 @@ import { useStudio } from "../store/studio";
 import { deckLayout, type DeckLayout } from "../lib/geometry";
 import { transferredNodePointsSafe } from "./nodeOverlayUtil";
 import { buildTransferContext } from "../lib/syntax/transfer";
+import { useCanvasPalette } from "../lib/useTheme";
 
 /**
  * Structural model overlay in deck coordinates.
@@ -17,6 +18,7 @@ export function NodeOverlay({
   px: (v: number) => number;
   showNodes: boolean;
 }) {
+  const palette = useCanvasPalette();
   const model = useStudio((s) => s.model);
   const mapping = useStudio((s) => s.settings.coordMapping);
   const workflow = useStudio((s) => s.settings.workflow);
@@ -40,8 +42,8 @@ export function NodeOverlay({
         <polygon
           key={`quad-${quad.id}`}
           points={quad.points.map((p) => `${p.xd},${-p.zd}`).join(" ")}
-          fill="rgba(111,168,255,0.035)"
-          stroke="rgba(111,168,255,0.18)"
+          fill={palette.modelFill}
+          stroke={palette.modelStroke}
           strokeWidth={px(1)}
          
         />
@@ -53,7 +55,7 @@ export function NodeOverlay({
           y1={-member.a.zd}
           x2={member.b.xd}
           y2={-member.b.zd}
-          stroke="rgba(111,168,255,0.22)"
+          stroke={palette.modelMember}
           strokeWidth={px(1)}
          
         />
@@ -62,9 +64,9 @@ export function NodeOverlay({
         const load = loaded.get(node.id);
         return (
           <g key={`node-${node.id}`}>
-            <circle cx={node.xd} cy={-node.zd} r={px(2.2)} fill={load ? "#f5b544" : "#6fa8ff"} fillOpacity={load ? 1 : 0.7} />
+            <circle cx={node.xd} cy={-node.zd} r={px(2.2)} fill={load ? palette.modelLoadedNode : palette.modelNode} fillOpacity={load ? 1 : 0.7} />
             {load !== undefined && px(1) < 0.06 && (
-              <text x={node.xd + px(3)} y={-node.zd - px(3)} fontSize={px(7)} fill="#f5b544" className="mono">
+              <text x={node.xd + px(3)} y={-node.zd - px(3)} fontSize={px(7)} fill={palette.modelLoadedNode} className="mono">
                 {load.toFixed(1)}
               </text>
             )}
@@ -75,7 +77,7 @@ export function NodeOverlay({
         x={layout.spanM - px(4)}
         y={-layout.leftDeckEdgeZd + px(11)}
         fontSize={px(8)}
-        fill="#5b7b98"
+        fill={palette.modelLabel}
         textAnchor="end"
         className="mono"
       >

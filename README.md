@@ -7,7 +7,8 @@ vehicles on a dimensionally scaled plan, generating STAAD.Pro input for the **mo
 Built with React 18, TypeScript, Vite, Tailwind CSS, SVG and Zustand. No backend: the whole model is
 held client-side and persisted to browser storage or a JSON project file.
 
-![Deck plan](artifacts/plan.png)
+![Deck plan — dark](artifacts/plan.png)
+![Deck plan — light](artifacts/plan-light.png)
 
 ---
 
@@ -17,7 +18,7 @@ held client-side and persisted to browser storage or a JSON project file.
 npm install
 npm run dev        # http://localhost:5173
 npm run build      # type-check + production bundle in dist/
-npm test           # 102 tests (1 additional developer utility is skipped by default)
+npm test           # 120 tests (1 additional developer utility is skipped by default)
 ```
 
 Node 18+ is required. `npm run dev` binds to `0.0.0.0:5173`; the built `dist/` folder is a static site.
@@ -40,7 +41,7 @@ npx vitest run tests/tools/snapshot.test.tsx       # render artifacts/plan.svg +
 | **Syntax Import** | Paste STAAD.Pro text, inspect the parse report, reconstruct the scene |
 | **Load Configuration** | Workflow choice, moving-load generation settings, static transfer method and case numbering |
 | **Validation** | Geometry, placement, load, syntax and structural-model findings by severity and category |
-| **Project Settings** | Target release, deck ↔ global coordinate mapping, structural model import, persistence, `.std` export |
+| **Project Settings** | Appearance, target release, deck ↔ global coordinate mapping, structural model import, persistence, `.std` export |
 
 Two deliberately separate workflows share one vehicle model:
 
@@ -54,7 +55,23 @@ is never presented as a structurally valid load case.
 
 ---
 
-## 3. Engineering conventions
+## 3. Appearance (dark and light)
+
+Three choices — **Dark**, **Light** and **System** — are available from the header switch (one click
+toggles between light and dark) and from *Project Settings → Appearance*.
+
+* The whole workspace is themed from one set of CSS custom properties, so panels, inputs, tables,
+  badges and the syntax editor change together. Native controls follow too (`color-scheme`).
+* The plan is a **dark drafting surface** in dark mode and **white drawing paper** in light mode. Ink
+  colours, grid, lane markings, dimensions, clearance annotations, joints and load labels all come from
+  an explicit per-theme palette, so both drawings carry identical engineering information.
+* Vehicle colours are the placement colours; in light mode they are stepped down in value until they
+  clear the deck (contrast ≥ 3.1), keeping the hue and therefore the vehicle identity.
+* The preference is stored in the browser (`staad-irc-studio:theme:v1`), applied before first paint to
+  avoid a flash, and **kept out of the project file and the undo history** — appearance is not project
+  data. `System` follows the operating-system setting and reacts while the app is open.
+
+## 4. Engineering conventions
 
 Full detail in [docs/coordinate-system.md](docs/coordinate-system.md).
 
@@ -74,7 +91,7 @@ Full detail in [docs/coordinate-system.md](docs/coordinate-system.md).
 
 ---
 
-## 4. Vehicle data and provenance
+## 5. Vehicle data and provenance
 
 Verified values and their sources are documented in [docs/vehicle-data.md](docs/vehicle-data.md).
 Summary:
@@ -99,7 +116,7 @@ Data integrity measures:
 
 ---
 
-## 5. Moving-load workflow
+## 6. Moving-load workflow
 
 ```
 DEFINE MOVING LOAD
@@ -125,7 +142,7 @@ TYPE 1 3.6 0 2.25 XINC 1
 
 ---
 
-## 6. Explicit static-placement workflow
+## 7. Explicit static-placement workflow
 
 A static case is emitted only when **every** wheel or track slice can be transferred to the supplied
 structural model. Otherwise the case is rejected and the reason is printed into the document as a
@@ -153,7 +170,7 @@ The applied-versus-emitted load is reconciled for every case and reported.
 
 ---
 
-## 7. Syntax import and reconstruction
+## 8. Syntax import and reconstruction
 
 The parser is line-oriented and never drops text.
 
@@ -172,7 +189,7 @@ the scene, and only replace the scene when explicitly applied.
 
 ---
 
-## 8. Validation
+## 9. Validation
 
 `Validation` aggregates findings from geometry, placements, loads, syntax and the structural model:
 
@@ -190,7 +207,7 @@ claim of code compliance or structural adequacy.
 
 ---
 
-## 9. Persistence and export
+## 10. Persistence and export
 
 * `Save` (Ctrl+S) writes the project to `localStorage`; it is restored on the next visit.
 * `Export JSON` / `Import JSON` use the versioned `ProjectFile` schema (geometry, vehicle definitions,
@@ -203,7 +220,7 @@ locale-independent number formatting).
 
 ---
 
-## 10. Testing
+## 11. Testing
 
 ```
 npm test
@@ -214,6 +231,7 @@ npm test
 | `tests/geometry.test.ts` (26) | lane derivation, reference points, IRC load data, wheel-load splitting, edge-clearance solving, footprints, transforms and mapping round trips |
 | `tests/syntax.test.ts` (43) | moving-load plans, generation start, rotation blocking, determinism, parser robustness, transfer methods, static case emission/rejection, reconstruction |
 | `tests/project-schema.test.ts` (12) | project-file schema: JSON failures, field paths, cross-field checks, version gate |
+| `tests/theme.test.tsx` (18) | theme resolution and persistence, system-preference tracking, canvas palettes and contrast, the header switch, settings control |
 | `tests/app.test.tsx` (20) | tab rendering, canvas rendering, model → syntax integration, undo/redo, library provenance, persistence, import flow, syntax editor |
 
 The PRD's release gates require real STAAD.Pro execution tests and independent engineering
@@ -221,7 +239,7 @@ verification. **Those have not been run** — see [docs/limitations.md](docs/lim
 
 ---
 
-## 11. Repository layout
+## 12. Repository layout
 
 ```
 src/
@@ -231,6 +249,7 @@ src/
     vehicles.ts        IRC reference library + validation
     validation.ts      cross-cutting diagnostics
     project.ts         defaults, sample project, JSON format
+    theme.ts           appearance tokens, persistence and the SVG plan palette
     syntax/
       adapters.ts      version-aware adapters (2022 / 2025)
       moving.ts        moving-load definition + generation engine
@@ -249,7 +268,7 @@ docs/                  engineering documentation
 
 ---
 
-## 12. Scope and disclaimer
+## 13. Scope and disclaimer
 
 This tool prepares input for review; it does not replace the structural solver, code compliance checks,
 critical-position search, or independent verification. Generated files are syntax-checked by the

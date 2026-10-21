@@ -8,7 +8,9 @@ import { tokenizeSource } from "../../lib/syntax/tokenize";
 import { fmt } from "../../lib/units";
 import { generateDocument } from "../../lib/syntax/document";
 import { downloadText, slugify } from "../../lib/download";
-import { Button, CopyButton, Field, Hint, NumberField, Panel, Select, TextField, Toggle } from "../ui";
+import { Button, CopyButton, Field, FieldGroup, Hint, NumberField, Panel, Segmented, Select, TextField, Toggle } from "../ui";
+import { THEME_LABELS, type ThemeMode } from "../../lib/theme";
+import { useResolvedTheme } from "../../lib/useTheme";
 
 export function SettingsPanel() {
   const state = useStudio();
@@ -20,6 +22,7 @@ export function SettingsPanel() {
   const fileRef = useRef<HTMLInputElement | null>(null);
   const adapter = getAdapter(settings.staadVersion);
   const issues = mappingIssues(mapping);
+  const { mode: themeMode, theme: resolvedTheme } = useResolvedTheme();
 
   const importModel = () => {
     const fragment = parseStructuralModel(tokenizeSource(modelText));
@@ -310,6 +313,29 @@ export function SettingsPanel() {
             reproduced exactly.
           </p>
           {state.savedAt && <p className="mt-1 text-[10px] text-slate-600">Last browser save: {new Date(state.savedAt).toLocaleString()}</p>}
+        </Panel>
+
+        <Panel title="Appearance" subtitle="light and dark mode for the whole workspace">
+          <FieldGroup label="Theme">
+            <Segmented
+              value={themeMode}
+              onChange={(mode: ThemeMode) => state.setThemeMode(mode)}
+              options={[
+                { value: "dark", label: THEME_LABELS.dark },
+                { value: "light", label: THEME_LABELS.light },
+                { value: "system", label: THEME_LABELS.system },
+              ]}
+            />
+          </FieldGroup>
+          <p className="mt-2 text-[10.5px] leading-relaxed text-slate-500">
+            The plan is drawn on a dark drafting surface in dark mode and on white drawing paper in light mode. Dimensions,
+            clearance annotations and load labels keep the same meaning in both; only the ink changes.
+          </p>
+          <p className="mt-1 text-[10px] text-slate-600">
+            Active appearance: <span className="mono text-slate-400">{resolvedTheme}</span>
+            {themeMode === "system" ? " (following the operating system)" : ""}. The preference is stored in this browser and is
+            not part of the project file.
+          </p>
         </Panel>
 
         <Panel title="Units and conventions">

@@ -6,6 +6,7 @@
 |---|---|---|
 | `tests/geometry.test.ts` | 26 | deck derivation, lane splitting, reference points, IRC load data, wheel-load splitting, track slicing, edge-clearance solving, clearance reporting, rotations, deck ↔ global round trips, force directions |
 | `tests/syntax.test.ts` | 43 | moving-load plans and generation starts, direction reversal, mapping permutations, rotation blocking, deterministic documents, parser robustness, transfer methods, static emission and rejection, reconstruction, project round trips |
+| `tests/theme.test.tsx` | 18 | theme resolution, persistence, system-preference changes, light/dark canvas palettes, contrast guarantees, the header switch and the settings control |
 | `tests/project-schema.test.ts` | 12 | project-file validation: malformed JSON, field paths, schema version gate, cross-field checks, duplicate ids |
 | `tests/app.test.tsx` | 20 | tab rendering, plan rendering, shared model → syntax, undo/redo, library provenance, persistence, import flow, syntax editor behaviour |
 
@@ -15,7 +16,7 @@ Command:
 npm test
 ```
 
-Current status: **102 passing, 1 skipped** (the sample writer runs only with `WRITE_SAMPLES=1`).
+Current status: **120 passing, 1 skipped** (the sample writer runs only with `WRITE_SAMPLES=1`).
 
 ## PRD acceptance matrix — application-side evidence
 
@@ -55,6 +56,20 @@ Current status: **102 passing, 1 skipped** (the sample writer runs only with `WR
 | Rotated global coordinate system | mapping tests; generation blocked, static still emitted |
 | Multiple vehicles as separate cases | sample project (three placements) |
 | Force totals match the vehicle load | applied/emitted reconciliation test |
+
+## Appearance
+
+| Check | Covered by |
+|---|---|
+| Dark mode applies the `dark` class and `color-scheme` | `theme.test.tsx` |
+| Light mode paints the plan with the light palette | `theme.test.tsx` |
+| `System` follows the OS and reacts to a change while open | `theme.test.tsx` |
+| Preference persists and survives blocked storage | `theme.test.tsx` |
+| Appearance is not written into the project file or history | `theme.test.tsx` |
+| Vehicle colours stay legible on white paper (contrast ≥ 3.1) | `theme.test.tsx` |
+
+Both plans are rendered to `artifacts/plan.png` (dark) and `artifacts/plan-light.png` (light) with
+`SNAPSHOT_THEME`, so the two drawings can be compared side by side.
 
 ## Manual checks still required
 

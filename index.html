@@ -7,7 +7,29 @@
       name="description"
       content="STAAD.Pro IRC Live Load Placement Generator — scaled deck plan, verified IRC vehicle library, moving-load and explicit static-placement syntax engines."
     />
+    <meta name="theme-color" content="#070b12" />
     <title>STAAD.Pro IRC Live Load Studio</title>
+    <script>
+      /*
+       * Apply the stored appearance before the first paint. Without this the
+       * page flashes the dark palette while React mounts.
+       */
+      (function () {
+        try {
+          var stored = localStorage.getItem("staad-irc-studio:theme:v1");
+          var mode = stored === "light" || stored === "dark" || stored === "system" ? stored : "dark";
+          var light =
+            mode === "light" ||
+            (mode === "system" && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
+          var root = document.documentElement;
+          root.classList.add(light ? "light" : "dark");
+          root.dataset.theme = light ? "light" : "dark";
+          root.style.colorScheme = light ? "light" : "dark";
+        } catch (error) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

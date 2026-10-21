@@ -28,6 +28,7 @@ import { parseProjectFile } from "../lib/projectSchema";
 import { deckLayout } from "../lib/geometry";
 import { reconstructScene, type Reconstruction } from "../lib/syntax/import";
 import { cloneVehicle, customTemplate, presetVehicles } from "../lib/vehicles";
+import { applyTheme, readStoredThemeMode, resolveTheme, storeThemeMode, type ThemeMode } from "../lib/theme";
 
 export type TabId = "placement" | "library" | "import" | "loads" | "validation" | "settings";
 
@@ -64,6 +65,8 @@ function snapshotOf(state: ProjectData): Snapshot {
 
 export interface StudioState extends ProjectData {
   activeTab: TabId;
+  /** Appearance preference; not part of the project file or the undo history. */
+  themeMode: ThemeMode;
   selectedPlacementId: string | null;
   selectedVehicleId: string | null;
   syntaxMode: SyntaxMode;
@@ -78,6 +81,7 @@ export interface StudioState extends ProjectData {
   hydrated: boolean;
 
   setTab: (tab: TabId) => void;
+  setThemeMode: (mode: ThemeMode) => void;
   notify: (kind: Toast["kind"], message: string) => void;
   dismissToast: () => void;
 
@@ -137,6 +141,7 @@ export const useStudio = create<StudioState>((set, get) => {
   return {
     ...initial,
     activeTab: "placement",
+    themeMode: readStoredThemeMode(),
     selectedPlacementId: initial.placements[0]?.id ?? null,
     selectedVehicleId: initial.vehicles[0]?.id ?? null,
     syntaxMode: "generated",
@@ -151,6 +156,12 @@ export const useStudio = create<StudioState>((set, get) => {
     hydrated: false,
 
     setTab: (tab) => set({ activeTab: tab }),
+
+    setThemeMode: (mode) => {
+      set({ themeMode: mode });
+      storeThemeMode(mode);
+      applyTheme(resolveTheme(mode));
+    },
 
     notify: (kind, message) => {
       toastCounter += 1;

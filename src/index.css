@@ -2,7 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Theme tokens.
+ *
+ * The palette is defined once, twice: dark (default) and light. Tailwind colour
+ * utilities resolve through these variables, so components never branch on the
+ * theme. `color-scheme` keeps native widgets, scrollbars and form controls in
+ * step with the selected appearance.
+ */
 @layer base {
+  :root {
+    color-scheme: dark;
+
+    --ink-950: 7 11 18;
+    --ink-900: 11 17 27;
+    --ink-850: 14 22 34;
+    --ink-800: 18 28 42;
+    --ink-700: 26 39 56;
+    --ink-600: 38 55 76;
+    --ink-500: 58 79 104;
+
+    --slate-100: 241 245 249;
+    --slate-200: 226 232 240;
+    --slate-300: 203 213 225;
+    --slate-400: 148 163 184;
+    --slate-500: 100 116 139;
+    --slate-600: 71 85 105;
+
+    --white: 255 255 255;
+
+    --cyan-200: 165 243 252;
+    --cyan-300: 103 232 249;
+    --cyan-400: 56 214 230;
+    --cyan-500: 20 184 201;
+    --cyan-600: 8 145 178;
+
+    --signal-amber: 245 181 68;
+    --signal-red: 255 107 107;
+    --signal-green: 74 222 128;
+    --signal-blue: 111 168 255;
+
+    --plan-canvas: #081019;
+    --panel-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 10px 30px -18px rgba(0, 0, 0, 0.9);
+    --scroll-thumb: #24344a;
+    --scroll-thumb-hover: #33506e;
+    --selection: rgba(56, 214, 230, 0.28);
+    --syntax-error: rgba(255, 107, 107, 0.09);
+    --syntax-warning: rgba(245, 181, 68, 0.08);
+  }
+
+  html.light {
+    color-scheme: light;
+
+    /* Page tint / panel white: panels must read as raised cards on a soft page. */
+    --ink-950: 238 242 247;
+    --ink-900: 255 255 255;
+    --ink-850: 247 249 252;
+    --ink-800: 241 245 249;
+    --ink-700: 232 238 246;
+    --ink-600: 203 213 225;
+    --ink-500: 148 163 184;
+
+    /* Body text: the slate ramp inverts so `text-slate-100..600` stays legible. */
+    --slate-100: 15 23 42;
+    --slate-200: 30 41 59;
+    --slate-300: 51 65 85;
+    --slate-400: 71 85 105;
+    --slate-500: 90 105 124;
+    --slate-600: 124 137 154;
+
+    /* Borders and hover overlays are built from `white`; on paper they invert. */
+    --white: 15 23 42;
+
+    --cyan-200: 21 94 117;
+    --cyan-300: 21 94 117;
+    --cyan-400: 14 116 144;
+    --cyan-500: 8 145 178;
+    --cyan-600: 21 94 117;
+
+    --signal-amber: 180 83 9;
+    --signal-red: 220 38 38;
+    --signal-green: 21 128 61;
+    --signal-blue: 37 99 235;
+
+    --plan-canvas: #e9edf3;
+    --panel-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 24px -22px rgba(15, 23, 42, 0.45);
+    --scroll-thumb: #c3cddb;
+    --scroll-thumb-hover: #a7b4c6;
+    --selection: rgba(8, 145, 178, 0.22);
+    --syntax-error: rgba(220, 38, 38, 0.07);
+    --syntax-warning: rgba(180, 83, 9, 0.08);
+  }
+
   html,
   body,
   #root {
@@ -12,6 +103,7 @@
   body {
     @apply bg-ink-950 text-slate-200 antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "tnum";
+    transition: background-color 160ms ease, color 160ms ease;
   }
 
   ::-webkit-scrollbar {
@@ -22,13 +114,13 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #24344a;
+    background: var(--scroll-thumb);
     border-radius: 999px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #33506e;
+    background: var(--scroll-thumb-hover);
     background-clip: content-box;
   }
 
@@ -39,7 +131,7 @@
   }
 
   ::selection {
-    background: rgba(56, 214, 230, 0.28);
+    background: var(--selection);
   }
 }
 
@@ -57,13 +149,14 @@
   }
 
   .field-label {
-    @apply text-[11px] font-medium text-slate-400;
+    @apply text-[11px] font-medium text-slate-500;
   }
 
   .input {
     @apply w-full rounded-md border border-white/10 bg-ink-950/80 px-2.5 py-1.5 text-[13px] text-slate-100
       outline-none transition placeholder:text-slate-600
       focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/15 disabled:opacity-50;
+    color-scheme: inherit;
   }
 
   .input-sm {
@@ -75,6 +168,7 @@
     @apply inline-flex select-none items-center justify-center gap-1.5 rounded-md border border-white/10
       bg-ink-800 px-2.5 py-1.5 text-[12px] font-medium text-slate-200 transition
       hover:border-white/20 hover:bg-ink-700 active:translate-y-px
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/40
       disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink-800;
   }
 
@@ -112,7 +206,7 @@
   }
 
   .stat-label {
-    @apply text-[10px] uppercase tracking-wider text-slate-500;
+    @apply text-[10px] uppercase tracking-wider text-slate-600;
   }
 
   .stat-value {
@@ -121,7 +215,8 @@
 
   .tab {
     @apply relative flex items-center gap-2 whitespace-nowrap px-3 py-2.5 text-[12px] font-medium
-      text-slate-500 transition hover:text-slate-300;
+      text-slate-500 transition hover:text-slate-300
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-500/40;
   }
 
   .tab-active {
@@ -142,35 +237,17 @@
   }
 }
 
-/* Canvas plan styling */
-.plan-grid {
-  /* widths are set as element attributes in screen-space units, never here */
-  stroke: rgba(120, 165, 210, 0.07);
-}
-
-.plan-deck {
-  fill: #0b1521;
-  stroke: rgba(120, 165, 210, 0.4);
-}
-
-.plan-surface {
-  fill: #13202e;
-  stroke: rgba(120, 165, 210, 0.28);
-}
-
+/* Canvas plan styling.
+   Colours and widths are element attributes resolved from the canvas palette;
+   keeping them out of CSS means every renderer draws the same plan. */
 .plan-text {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-variant-numeric: tabular-nums;
-  fill: #7f95ad;
 }
 
 .vehicle-body {
   /* fill and opacity are set per element so renderers never disagree */
   stroke-linejoin: round;
-}
-
-.vehicle-selected .vehicle-body {
-  stroke-width: 2.2;
 }
 
 .handle {
@@ -198,9 +275,9 @@
 }
 
 .syntax-error-line {
-  background: rgba(255, 107, 107, 0.09);
+  background: var(--syntax-error);
 }
 
 .syntax-warning-line {
-  background: rgba(245, 181, 68, 0.08);
+  background: var(--syntax-warning);
 }
