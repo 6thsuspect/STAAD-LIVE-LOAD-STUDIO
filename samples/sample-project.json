@@ -1,0 +1,3095 @@
+{
+  "schemaVersion": 1,
+  "savedAt": "2026-01-01T00:00:00.000Z",
+  "name": "Sample: 40 m two-lane bridge",
+  "deck": {
+    "spanM": 40,
+    "totalWidthM": 12,
+    "carriagewayWidthM": 9,
+    "leftBarrierWidthM": 0.5,
+    "rightBarrierWidthM": 0.5,
+    "leftFootpathWidthM": 1,
+    "rightFootpathWidthM": 1,
+    "leftKerbWidthM": 0,
+    "rightKerbWidthM": 0,
+    "laneCount": 2,
+    "laneWidthMode": "equal",
+    "laneWidthsM": [
+      4.5,
+      4.5
+    ],
+    "longitudinalOrigin": "left-end",
+    "transverseOrigin": "centreline",
+    "kerbHeightM": 0.15
+  },
+  "vehicles": [
+    {
+      "id": "preset-irc-class-a",
+      "name": "IRC Class A train of vehicles",
+      "shortName": "Class A",
+      "classification": "IRC Class A",
+      "vehicleType": "wheeled",
+      "axles": [
+        {
+          "id": "axle-1",
+          "label": "A1",
+          "loadKN": 27,
+          "longitudinalOffsetM": 0,
+          "wheelLoadsKN": [
+            13.5,
+            13.5
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.15,
+          "wheelLengthM": 0.2
+        },
+        {
+          "id": "axle-2",
+          "label": "A2",
+          "loadKN": 27,
+          "longitudinalOffsetM": 1.1,
+          "wheelLoadsKN": [
+            13.5,
+            13.5
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.15,
+          "wheelLengthM": 0.2
+        },
+        {
+          "id": "axle-3",
+          "label": "A3",
+          "loadKN": 114,
+          "longitudinalOffsetM": 4.3,
+          "wheelLoadsKN": [
+            57,
+            57
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.5,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-4",
+          "label": "A4",
+          "loadKN": 114,
+          "longitudinalOffsetM": 5.5,
+          "wheelLoadsKN": [
+            57,
+            57
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.5,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-5",
+          "label": "A5",
+          "loadKN": 68,
+          "longitudinalOffsetM": 9.8,
+          "wheelLoadsKN": [
+            34,
+            34
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.38,
+          "wheelLengthM": 0.2
+        },
+        {
+          "id": "axle-6",
+          "label": "A6",
+          "loadKN": 68,
+          "longitudinalOffsetM": 12.8,
+          "wheelLoadsKN": [
+            34,
+            34
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.38,
+          "wheelLengthM": 0.2
+        },
+        {
+          "id": "axle-7",
+          "label": "A7",
+          "loadKN": 68,
+          "longitudinalOffsetM": 15.8,
+          "wheelLoadsKN": [
+            34,
+            34
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.38,
+          "wheelLengthM": 0.2
+        },
+        {
+          "id": "axle-8",
+          "label": "A8",
+          "loadKN": 68,
+          "longitudinalOffsetM": 18.8,
+          "wheelLoadsKN": [
+            34,
+            34
+          ],
+          "trackSpacingM": 1.8,
+          "wheelWidthM": 0.38,
+          "wheelLengthM": 0.2
+        }
+      ],
+      "tracks": [],
+      "widthM": 2.3,
+      "lengthM": 18.8,
+      "datumDescription": "Axle 1 (27 kN) line, vehicle centreline",
+      "sourceReference": "IRC:6-2017 Cl. 204.3, Fig. 2, Table 2",
+      "sourceEdition": "IRC:6-2017",
+      "provenance": "reference-preset",
+      "notes": "8-axle train, total 554 kN. Axle loads 27/27/114/114/68/68/68/68 kN at 1.10/3.20/1.20/4.30/3.00/3.00/3.00 m. Wheel gauge 1.80 m c/c. Ground contact 0.50 × 0.25 m (114 kN), 0.38 × 0.20 m (68 kN), 0.15 × 0.20 m (27 kN) per Table 2 (transverse × longitudinal). 2.30 m transverse occupancy = 1.80 m gauge + 0.50 m contact.",
+      "isBuiltIn": true
+    },
+    {
+      "id": "preset-irc-70r-wheeled",
+      "name": "IRC Class 70R wheeled vehicle",
+      "shortName": "70R wheeled",
+      "classification": "IRC Class 70R (wheeled)",
+      "vehicleType": "wheeled",
+      "axles": [
+        {
+          "id": "axle-1",
+          "label": "A1",
+          "loadKN": 80,
+          "longitudinalOffsetM": 0,
+          "wheelLoadsKN": [
+            40,
+            40
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-2",
+          "label": "A2",
+          "loadKN": 120,
+          "longitudinalOffsetM": 3.96,
+          "wheelLoadsKN": [
+            60,
+            60
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-3",
+          "label": "A3",
+          "loadKN": 120,
+          "longitudinalOffsetM": 5.48,
+          "wheelLoadsKN": [
+            60,
+            60
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-4",
+          "label": "A4",
+          "loadKN": 170,
+          "longitudinalOffsetM": 7.61,
+          "wheelLoadsKN": [
+            85,
+            85
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-5",
+          "label": "A5",
+          "loadKN": 170,
+          "longitudinalOffsetM": 8.98,
+          "wheelLoadsKN": [
+            85,
+            85
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-6",
+          "label": "A6",
+          "loadKN": 170,
+          "longitudinalOffsetM": 12.03,
+          "wheelLoadsKN": [
+            85,
+            85
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-7",
+          "label": "A7",
+          "loadKN": 170,
+          "longitudinalOffsetM": 13.4,
+          "wheelLoadsKN": [
+            85,
+            85
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        }
+      ],
+      "tracks": [],
+      "widthM": 2.9,
+      "lengthM": 13.4,
+      "datumDescription": "Axle 1 (80 kN) line, vehicle centreline",
+      "sourceReference": "IRC:6-2017 Cl. 204.1, Fig. 1",
+      "sourceEdition": "IRC:6-2017",
+      "provenance": "reference-preset",
+      "notes": "7-axle wheeled vehicle, total 1000 kN. Axle loads 80/120/120/170/170/170/170 kN at 3.96/1.52/2.13/1.37/3.05/1.37 m (13.40 m axle train; IRC figure overall length ≈ 15.4 m). Verified 2.90 m transverse occupancy. Transverse contact spread 0.84 m per side and 0.25 m longitudinal contact are nominal footprint values used for drawing and clearance geometry only — verify contact patch against your project specification.",
+      "isBuiltIn": true
+    },
+    {
+      "id": "preset-irc-70r-tracked",
+      "name": "IRC Class 70R tracked vehicle",
+      "shortName": "70R tracked",
+      "classification": "IRC Class 70R (tracked)",
+      "vehicleType": "tracked",
+      "axles": [],
+      "tracks": [
+        {
+          "id": "track-plus",
+          "label": "Track +Zd",
+          "loadKN": 350,
+          "longitudinalStartM": 0,
+          "longitudinalEndM": 4.57,
+          "transverseCentreM": 1.03,
+          "widthM": 0.84
+        },
+        {
+          "id": "track-minus",
+          "label": "Track −Zd",
+          "loadKN": 350,
+          "longitudinalStartM": 0,
+          "longitudinalEndM": 4.57,
+          "transverseCentreM": -1.03,
+          "widthM": 0.84
+        }
+      ],
+      "widthM": 2.9,
+      "lengthM": 4.57,
+      "datumDescription": "Front edge of track contact area, vehicle centreline",
+      "sourceReference": "IRC:6-2017 Cl. 204.1, Fig. 1",
+      "sourceEdition": "IRC:6-2017",
+      "provenance": "reference-preset",
+      "notes": "Tracked vehicle, total 700 kN (350 kN per track). Contact length 4.57 m, track width 0.84 m, track centres 2.06 m (2.90 m transverse occupancy). Overall vehicle length 7.92 m; only the 4.57 m contact area carries load. Track load is discretised into longitudinal slices for generation and load transfer.",
+      "isBuiltIn": true
+    },
+    {
+      "id": "preset-irc-70r-bogie",
+      "name": "IRC Class 70R bogie (400 kN)",
+      "shortName": "70R bogie",
+      "classification": "IRC Class 70R (bogie)",
+      "vehicleType": "wheeled",
+      "axles": [
+        {
+          "id": "axle-1",
+          "label": "A1",
+          "loadKN": 200,
+          "longitudinalOffsetM": 0,
+          "wheelLoadsKN": [
+            100,
+            100
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        },
+        {
+          "id": "axle-2",
+          "label": "A2",
+          "loadKN": 200,
+          "longitudinalOffsetM": 1.22,
+          "wheelLoadsKN": [
+            100,
+            100
+          ],
+          "trackSpacingM": 2.06,
+          "wheelWidthM": 0.84,
+          "wheelLengthM": 0.25
+        }
+      ],
+      "tracks": [],
+      "widthM": 2.9,
+      "lengthM": 1.22,
+      "datumDescription": "Bogie axle 1 line, vehicle centreline",
+      "sourceReference": "IRC:6-2017 Cl. 204.1, Note 3",
+      "sourceEdition": "IRC:6-2017",
+      "provenance": "reference-preset",
+      "notes": "40 t bogie: two axles at 1.22 m centres, 200 kN per axle (400 kN total). Footprint values are the same nominal spread used for the 70R wheeled vehicle. Commonly used for local deck-slab checks.",
+      "isBuiltIn": true
+    }
+  ],
+  "placements": [
+    {
+      "id": "placement-1",
+      "vehicleId": "preset-irc-class-a",
+      "label": "V1",
+      "longitudinalM": 13,
+      "transverseM": 2.25,
+      "rotationDeg": 0,
+      "referencePoint": "vehicle-centre",
+      "mode": "lane",
+      "lane": {
+        "laneIndex": 0
+      },
+      "locked": false,
+      "visible": true,
+      "color": "#38bdf8"
+    },
+    {
+      "id": "placement-2",
+      "vehicleId": "preset-irc-70r-wheeled",
+      "label": "V2",
+      "longitudinalM": 10,
+      "transverseM": -2.25,
+      "rotationDeg": 0,
+      "referencePoint": "vehicle-centre",
+      "mode": "lane",
+      "lane": {
+        "laneIndex": 1
+      },
+      "locked": false,
+      "visible": true,
+      "color": "#f5b544",
+      "loadCaseNumber": 302
+    },
+    {
+      "id": "placement-3",
+      "vehicleId": "preset-irc-70r-tracked",
+      "label": "V3",
+      "longitudinalM": 26,
+      "transverseM": 2.25,
+      "rotationDeg": 0,
+      "referencePoint": "vehicle-front",
+      "mode": "edge",
+      "edge": {
+        "side": "left",
+        "clearanceM": 1.2,
+        "datum": "carriageway"
+      },
+      "locked": false,
+      "visible": true,
+      "color": "#4ade80"
+    }
+  ],
+  "model": {
+    "nodes": [
+      {
+        "id": 1,
+        "x": 0,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 2,
+        "x": 0,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 3,
+        "x": 0,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 4,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 5,
+        "x": 0,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 6,
+        "x": 0,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 7,
+        "x": 0,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 8,
+        "x": 2.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 9,
+        "x": 2.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 10,
+        "x": 2.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 11,
+        "x": 2.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 12,
+        "x": 2.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 13,
+        "x": 2.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 14,
+        "x": 2.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 15,
+        "x": 5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 16,
+        "x": 5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 17,
+        "x": 5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 18,
+        "x": 5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 19,
+        "x": 5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 20,
+        "x": 5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 21,
+        "x": 5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 22,
+        "x": 7.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 23,
+        "x": 7.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 24,
+        "x": 7.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 25,
+        "x": 7.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 26,
+        "x": 7.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 27,
+        "x": 7.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 28,
+        "x": 7.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 29,
+        "x": 10,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 30,
+        "x": 10,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 31,
+        "x": 10,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 32,
+        "x": 10,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 33,
+        "x": 10,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 34,
+        "x": 10,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 35,
+        "x": 10,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 36,
+        "x": 12.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 37,
+        "x": 12.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 38,
+        "x": 12.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 39,
+        "x": 12.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 40,
+        "x": 12.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 41,
+        "x": 12.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 42,
+        "x": 12.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 43,
+        "x": 15,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 44,
+        "x": 15,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 45,
+        "x": 15,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 46,
+        "x": 15,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 47,
+        "x": 15,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 48,
+        "x": 15,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 49,
+        "x": 15,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 50,
+        "x": 17.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 51,
+        "x": 17.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 52,
+        "x": 17.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 53,
+        "x": 17.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 54,
+        "x": 17.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 55,
+        "x": 17.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 56,
+        "x": 17.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 57,
+        "x": 20,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 58,
+        "x": 20,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 59,
+        "x": 20,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 60,
+        "x": 20,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 61,
+        "x": 20,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 62,
+        "x": 20,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 63,
+        "x": 20,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 64,
+        "x": 22.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 65,
+        "x": 22.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 66,
+        "x": 22.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 67,
+        "x": 22.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 68,
+        "x": 22.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 69,
+        "x": 22.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 70,
+        "x": 22.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 71,
+        "x": 25,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 72,
+        "x": 25,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 73,
+        "x": 25,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 74,
+        "x": 25,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 75,
+        "x": 25,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 76,
+        "x": 25,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 77,
+        "x": 25,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 78,
+        "x": 27.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 79,
+        "x": 27.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 80,
+        "x": 27.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 81,
+        "x": 27.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 82,
+        "x": 27.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 83,
+        "x": 27.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 84,
+        "x": 27.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 85,
+        "x": 30,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 86,
+        "x": 30,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 87,
+        "x": 30,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 88,
+        "x": 30,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 89,
+        "x": 30,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 90,
+        "x": 30,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 91,
+        "x": 30,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 92,
+        "x": 32.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 93,
+        "x": 32.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 94,
+        "x": 32.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 95,
+        "x": 32.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 96,
+        "x": 32.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 97,
+        "x": 32.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 98,
+        "x": 32.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 99,
+        "x": 35,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 100,
+        "x": 35,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 101,
+        "x": 35,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 102,
+        "x": 35,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 103,
+        "x": 35,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 104,
+        "x": 35,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 105,
+        "x": 35,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 106,
+        "x": 37.5,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 107,
+        "x": 37.5,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 108,
+        "x": 37.5,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 109,
+        "x": 37.5,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 110,
+        "x": 37.5,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 111,
+        "x": 37.5,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 112,
+        "x": 37.5,
+        "y": 0,
+        "z": 5.4
+      },
+      {
+        "id": 113,
+        "x": 40,
+        "y": 0,
+        "z": -5.4
+      },
+      {
+        "id": 114,
+        "x": 40,
+        "y": 0,
+        "z": -3.6
+      },
+      {
+        "id": 115,
+        "x": 40,
+        "y": 0,
+        "z": -1.8
+      },
+      {
+        "id": 116,
+        "x": 40,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "id": 117,
+        "x": 40,
+        "y": 0,
+        "z": 1.8
+      },
+      {
+        "id": 118,
+        "x": 40,
+        "y": 0,
+        "z": 3.6
+      },
+      {
+        "id": 119,
+        "x": 40,
+        "y": 0,
+        "z": 5.4
+      }
+    ],
+    "members": [
+      {
+        "id": 1,
+        "startNode": 1,
+        "endNode": 2
+      },
+      {
+        "id": 2,
+        "startNode": 2,
+        "endNode": 3
+      },
+      {
+        "id": 3,
+        "startNode": 3,
+        "endNode": 4
+      },
+      {
+        "id": 4,
+        "startNode": 4,
+        "endNode": 5
+      },
+      {
+        "id": 5,
+        "startNode": 5,
+        "endNode": 6
+      },
+      {
+        "id": 6,
+        "startNode": 6,
+        "endNode": 7
+      },
+      {
+        "id": 7,
+        "startNode": 8,
+        "endNode": 9
+      },
+      {
+        "id": 8,
+        "startNode": 9,
+        "endNode": 10
+      },
+      {
+        "id": 9,
+        "startNode": 10,
+        "endNode": 11
+      },
+      {
+        "id": 10,
+        "startNode": 11,
+        "endNode": 12
+      },
+      {
+        "id": 11,
+        "startNode": 12,
+        "endNode": 13
+      },
+      {
+        "id": 12,
+        "startNode": 13,
+        "endNode": 14
+      },
+      {
+        "id": 13,
+        "startNode": 15,
+        "endNode": 16
+      },
+      {
+        "id": 14,
+        "startNode": 16,
+        "endNode": 17
+      },
+      {
+        "id": 15,
+        "startNode": 17,
+        "endNode": 18
+      },
+      {
+        "id": 16,
+        "startNode": 18,
+        "endNode": 19
+      },
+      {
+        "id": 17,
+        "startNode": 19,
+        "endNode": 20
+      },
+      {
+        "id": 18,
+        "startNode": 20,
+        "endNode": 21
+      },
+      {
+        "id": 19,
+        "startNode": 22,
+        "endNode": 23
+      },
+      {
+        "id": 20,
+        "startNode": 23,
+        "endNode": 24
+      },
+      {
+        "id": 21,
+        "startNode": 24,
+        "endNode": 25
+      },
+      {
+        "id": 22,
+        "startNode": 25,
+        "endNode": 26
+      },
+      {
+        "id": 23,
+        "startNode": 26,
+        "endNode": 27
+      },
+      {
+        "id": 24,
+        "startNode": 27,
+        "endNode": 28
+      },
+      {
+        "id": 25,
+        "startNode": 29,
+        "endNode": 30
+      },
+      {
+        "id": 26,
+        "startNode": 30,
+        "endNode": 31
+      },
+      {
+        "id": 27,
+        "startNode": 31,
+        "endNode": 32
+      },
+      {
+        "id": 28,
+        "startNode": 32,
+        "endNode": 33
+      },
+      {
+        "id": 29,
+        "startNode": 33,
+        "endNode": 34
+      },
+      {
+        "id": 30,
+        "startNode": 34,
+        "endNode": 35
+      },
+      {
+        "id": 31,
+        "startNode": 36,
+        "endNode": 37
+      },
+      {
+        "id": 32,
+        "startNode": 37,
+        "endNode": 38
+      },
+      {
+        "id": 33,
+        "startNode": 38,
+        "endNode": 39
+      },
+      {
+        "id": 34,
+        "startNode": 39,
+        "endNode": 40
+      },
+      {
+        "id": 35,
+        "startNode": 40,
+        "endNode": 41
+      },
+      {
+        "id": 36,
+        "startNode": 41,
+        "endNode": 42
+      },
+      {
+        "id": 37,
+        "startNode": 43,
+        "endNode": 44
+      },
+      {
+        "id": 38,
+        "startNode": 44,
+        "endNode": 45
+      },
+      {
+        "id": 39,
+        "startNode": 45,
+        "endNode": 46
+      },
+      {
+        "id": 40,
+        "startNode": 46,
+        "endNode": 47
+      },
+      {
+        "id": 41,
+        "startNode": 47,
+        "endNode": 48
+      },
+      {
+        "id": 42,
+        "startNode": 48,
+        "endNode": 49
+      },
+      {
+        "id": 43,
+        "startNode": 50,
+        "endNode": 51
+      },
+      {
+        "id": 44,
+        "startNode": 51,
+        "endNode": 52
+      },
+      {
+        "id": 45,
+        "startNode": 52,
+        "endNode": 53
+      },
+      {
+        "id": 46,
+        "startNode": 53,
+        "endNode": 54
+      },
+      {
+        "id": 47,
+        "startNode": 54,
+        "endNode": 55
+      },
+      {
+        "id": 48,
+        "startNode": 55,
+        "endNode": 56
+      },
+      {
+        "id": 49,
+        "startNode": 57,
+        "endNode": 58
+      },
+      {
+        "id": 50,
+        "startNode": 58,
+        "endNode": 59
+      },
+      {
+        "id": 51,
+        "startNode": 59,
+        "endNode": 60
+      },
+      {
+        "id": 52,
+        "startNode": 60,
+        "endNode": 61
+      },
+      {
+        "id": 53,
+        "startNode": 61,
+        "endNode": 62
+      },
+      {
+        "id": 54,
+        "startNode": 62,
+        "endNode": 63
+      },
+      {
+        "id": 55,
+        "startNode": 64,
+        "endNode": 65
+      },
+      {
+        "id": 56,
+        "startNode": 65,
+        "endNode": 66
+      },
+      {
+        "id": 57,
+        "startNode": 66,
+        "endNode": 67
+      },
+      {
+        "id": 58,
+        "startNode": 67,
+        "endNode": 68
+      },
+      {
+        "id": 59,
+        "startNode": 68,
+        "endNode": 69
+      },
+      {
+        "id": 60,
+        "startNode": 69,
+        "endNode": 70
+      },
+      {
+        "id": 61,
+        "startNode": 71,
+        "endNode": 72
+      },
+      {
+        "id": 62,
+        "startNode": 72,
+        "endNode": 73
+      },
+      {
+        "id": 63,
+        "startNode": 73,
+        "endNode": 74
+      },
+      {
+        "id": 64,
+        "startNode": 74,
+        "endNode": 75
+      },
+      {
+        "id": 65,
+        "startNode": 75,
+        "endNode": 76
+      },
+      {
+        "id": 66,
+        "startNode": 76,
+        "endNode": 77
+      },
+      {
+        "id": 67,
+        "startNode": 78,
+        "endNode": 79
+      },
+      {
+        "id": 68,
+        "startNode": 79,
+        "endNode": 80
+      },
+      {
+        "id": 69,
+        "startNode": 80,
+        "endNode": 81
+      },
+      {
+        "id": 70,
+        "startNode": 81,
+        "endNode": 82
+      },
+      {
+        "id": 71,
+        "startNode": 82,
+        "endNode": 83
+      },
+      {
+        "id": 72,
+        "startNode": 83,
+        "endNode": 84
+      },
+      {
+        "id": 73,
+        "startNode": 85,
+        "endNode": 86
+      },
+      {
+        "id": 74,
+        "startNode": 86,
+        "endNode": 87
+      },
+      {
+        "id": 75,
+        "startNode": 87,
+        "endNode": 88
+      },
+      {
+        "id": 76,
+        "startNode": 88,
+        "endNode": 89
+      },
+      {
+        "id": 77,
+        "startNode": 89,
+        "endNode": 90
+      },
+      {
+        "id": 78,
+        "startNode": 90,
+        "endNode": 91
+      },
+      {
+        "id": 79,
+        "startNode": 92,
+        "endNode": 93
+      },
+      {
+        "id": 80,
+        "startNode": 93,
+        "endNode": 94
+      },
+      {
+        "id": 81,
+        "startNode": 94,
+        "endNode": 95
+      },
+      {
+        "id": 82,
+        "startNode": 95,
+        "endNode": 96
+      },
+      {
+        "id": 83,
+        "startNode": 96,
+        "endNode": 97
+      },
+      {
+        "id": 84,
+        "startNode": 97,
+        "endNode": 98
+      },
+      {
+        "id": 85,
+        "startNode": 99,
+        "endNode": 100
+      },
+      {
+        "id": 86,
+        "startNode": 100,
+        "endNode": 101
+      },
+      {
+        "id": 87,
+        "startNode": 101,
+        "endNode": 102
+      },
+      {
+        "id": 88,
+        "startNode": 102,
+        "endNode": 103
+      },
+      {
+        "id": 89,
+        "startNode": 103,
+        "endNode": 104
+      },
+      {
+        "id": 90,
+        "startNode": 104,
+        "endNode": 105
+      },
+      {
+        "id": 91,
+        "startNode": 106,
+        "endNode": 107
+      },
+      {
+        "id": 92,
+        "startNode": 107,
+        "endNode": 108
+      },
+      {
+        "id": 93,
+        "startNode": 108,
+        "endNode": 109
+      },
+      {
+        "id": 94,
+        "startNode": 109,
+        "endNode": 110
+      },
+      {
+        "id": 95,
+        "startNode": 110,
+        "endNode": 111
+      },
+      {
+        "id": 96,
+        "startNode": 111,
+        "endNode": 112
+      },
+      {
+        "id": 97,
+        "startNode": 113,
+        "endNode": 114
+      },
+      {
+        "id": 98,
+        "startNode": 114,
+        "endNode": 115
+      },
+      {
+        "id": 99,
+        "startNode": 115,
+        "endNode": 116
+      },
+      {
+        "id": 100,
+        "startNode": 116,
+        "endNode": 117
+      },
+      {
+        "id": 101,
+        "startNode": 117,
+        "endNode": 118
+      },
+      {
+        "id": 102,
+        "startNode": 118,
+        "endNode": 119
+      },
+      {
+        "id": 103,
+        "startNode": 1,
+        "endNode": 8
+      },
+      {
+        "id": 104,
+        "startNode": 8,
+        "endNode": 15
+      },
+      {
+        "id": 105,
+        "startNode": 15,
+        "endNode": 22
+      },
+      {
+        "id": 106,
+        "startNode": 22,
+        "endNode": 29
+      },
+      {
+        "id": 107,
+        "startNode": 29,
+        "endNode": 36
+      },
+      {
+        "id": 108,
+        "startNode": 36,
+        "endNode": 43
+      },
+      {
+        "id": 109,
+        "startNode": 43,
+        "endNode": 50
+      },
+      {
+        "id": 110,
+        "startNode": 50,
+        "endNode": 57
+      },
+      {
+        "id": 111,
+        "startNode": 57,
+        "endNode": 64
+      },
+      {
+        "id": 112,
+        "startNode": 64,
+        "endNode": 71
+      },
+      {
+        "id": 113,
+        "startNode": 71,
+        "endNode": 78
+      },
+      {
+        "id": 114,
+        "startNode": 78,
+        "endNode": 85
+      },
+      {
+        "id": 115,
+        "startNode": 85,
+        "endNode": 92
+      },
+      {
+        "id": 116,
+        "startNode": 92,
+        "endNode": 99
+      },
+      {
+        "id": 117,
+        "startNode": 99,
+        "endNode": 106
+      },
+      {
+        "id": 118,
+        "startNode": 106,
+        "endNode": 113
+      },
+      {
+        "id": 119,
+        "startNode": 2,
+        "endNode": 9
+      },
+      {
+        "id": 120,
+        "startNode": 9,
+        "endNode": 16
+      },
+      {
+        "id": 121,
+        "startNode": 16,
+        "endNode": 23
+      },
+      {
+        "id": 122,
+        "startNode": 23,
+        "endNode": 30
+      },
+      {
+        "id": 123,
+        "startNode": 30,
+        "endNode": 37
+      },
+      {
+        "id": 124,
+        "startNode": 37,
+        "endNode": 44
+      },
+      {
+        "id": 125,
+        "startNode": 44,
+        "endNode": 51
+      },
+      {
+        "id": 126,
+        "startNode": 51,
+        "endNode": 58
+      },
+      {
+        "id": 127,
+        "startNode": 58,
+        "endNode": 65
+      },
+      {
+        "id": 128,
+        "startNode": 65,
+        "endNode": 72
+      },
+      {
+        "id": 129,
+        "startNode": 72,
+        "endNode": 79
+      },
+      {
+        "id": 130,
+        "startNode": 79,
+        "endNode": 86
+      },
+      {
+        "id": 131,
+        "startNode": 86,
+        "endNode": 93
+      },
+      {
+        "id": 132,
+        "startNode": 93,
+        "endNode": 100
+      },
+      {
+        "id": 133,
+        "startNode": 100,
+        "endNode": 107
+      },
+      {
+        "id": 134,
+        "startNode": 107,
+        "endNode": 114
+      },
+      {
+        "id": 135,
+        "startNode": 3,
+        "endNode": 10
+      },
+      {
+        "id": 136,
+        "startNode": 10,
+        "endNode": 17
+      },
+      {
+        "id": 137,
+        "startNode": 17,
+        "endNode": 24
+      },
+      {
+        "id": 138,
+        "startNode": 24,
+        "endNode": 31
+      },
+      {
+        "id": 139,
+        "startNode": 31,
+        "endNode": 38
+      },
+      {
+        "id": 140,
+        "startNode": 38,
+        "endNode": 45
+      },
+      {
+        "id": 141,
+        "startNode": 45,
+        "endNode": 52
+      },
+      {
+        "id": 142,
+        "startNode": 52,
+        "endNode": 59
+      },
+      {
+        "id": 143,
+        "startNode": 59,
+        "endNode": 66
+      },
+      {
+        "id": 144,
+        "startNode": 66,
+        "endNode": 73
+      },
+      {
+        "id": 145,
+        "startNode": 73,
+        "endNode": 80
+      },
+      {
+        "id": 146,
+        "startNode": 80,
+        "endNode": 87
+      },
+      {
+        "id": 147,
+        "startNode": 87,
+        "endNode": 94
+      },
+      {
+        "id": 148,
+        "startNode": 94,
+        "endNode": 101
+      },
+      {
+        "id": 149,
+        "startNode": 101,
+        "endNode": 108
+      },
+      {
+        "id": 150,
+        "startNode": 108,
+        "endNode": 115
+      },
+      {
+        "id": 151,
+        "startNode": 4,
+        "endNode": 11
+      },
+      {
+        "id": 152,
+        "startNode": 11,
+        "endNode": 18
+      },
+      {
+        "id": 153,
+        "startNode": 18,
+        "endNode": 25
+      },
+      {
+        "id": 154,
+        "startNode": 25,
+        "endNode": 32
+      },
+      {
+        "id": 155,
+        "startNode": 32,
+        "endNode": 39
+      },
+      {
+        "id": 156,
+        "startNode": 39,
+        "endNode": 46
+      },
+      {
+        "id": 157,
+        "startNode": 46,
+        "endNode": 53
+      },
+      {
+        "id": 158,
+        "startNode": 53,
+        "endNode": 60
+      },
+      {
+        "id": 159,
+        "startNode": 60,
+        "endNode": 67
+      },
+      {
+        "id": 160,
+        "startNode": 67,
+        "endNode": 74
+      },
+      {
+        "id": 161,
+        "startNode": 74,
+        "endNode": 81
+      },
+      {
+        "id": 162,
+        "startNode": 81,
+        "endNode": 88
+      },
+      {
+        "id": 163,
+        "startNode": 88,
+        "endNode": 95
+      },
+      {
+        "id": 164,
+        "startNode": 95,
+        "endNode": 102
+      },
+      {
+        "id": 165,
+        "startNode": 102,
+        "endNode": 109
+      },
+      {
+        "id": 166,
+        "startNode": 109,
+        "endNode": 116
+      },
+      {
+        "id": 167,
+        "startNode": 5,
+        "endNode": 12
+      },
+      {
+        "id": 168,
+        "startNode": 12,
+        "endNode": 19
+      },
+      {
+        "id": 169,
+        "startNode": 19,
+        "endNode": 26
+      },
+      {
+        "id": 170,
+        "startNode": 26,
+        "endNode": 33
+      },
+      {
+        "id": 171,
+        "startNode": 33,
+        "endNode": 40
+      },
+      {
+        "id": 172,
+        "startNode": 40,
+        "endNode": 47
+      },
+      {
+        "id": 173,
+        "startNode": 47,
+        "endNode": 54
+      },
+      {
+        "id": 174,
+        "startNode": 54,
+        "endNode": 61
+      },
+      {
+        "id": 175,
+        "startNode": 61,
+        "endNode": 68
+      },
+      {
+        "id": 176,
+        "startNode": 68,
+        "endNode": 75
+      },
+      {
+        "id": 177,
+        "startNode": 75,
+        "endNode": 82
+      },
+      {
+        "id": 178,
+        "startNode": 82,
+        "endNode": 89
+      },
+      {
+        "id": 179,
+        "startNode": 89,
+        "endNode": 96
+      },
+      {
+        "id": 180,
+        "startNode": 96,
+        "endNode": 103
+      },
+      {
+        "id": 181,
+        "startNode": 103,
+        "endNode": 110
+      },
+      {
+        "id": 182,
+        "startNode": 110,
+        "endNode": 117
+      },
+      {
+        "id": 183,
+        "startNode": 6,
+        "endNode": 13
+      },
+      {
+        "id": 184,
+        "startNode": 13,
+        "endNode": 20
+      },
+      {
+        "id": 185,
+        "startNode": 20,
+        "endNode": 27
+      },
+      {
+        "id": 186,
+        "startNode": 27,
+        "endNode": 34
+      },
+      {
+        "id": 187,
+        "startNode": 34,
+        "endNode": 41
+      },
+      {
+        "id": 188,
+        "startNode": 41,
+        "endNode": 48
+      },
+      {
+        "id": 189,
+        "startNode": 48,
+        "endNode": 55
+      },
+      {
+        "id": 190,
+        "startNode": 55,
+        "endNode": 62
+      },
+      {
+        "id": 191,
+        "startNode": 62,
+        "endNode": 69
+      },
+      {
+        "id": 192,
+        "startNode": 69,
+        "endNode": 76
+      },
+      {
+        "id": 193,
+        "startNode": 76,
+        "endNode": 83
+      },
+      {
+        "id": 194,
+        "startNode": 83,
+        "endNode": 90
+      },
+      {
+        "id": 195,
+        "startNode": 90,
+        "endNode": 97
+      },
+      {
+        "id": 196,
+        "startNode": 97,
+        "endNode": 104
+      },
+      {
+        "id": 197,
+        "startNode": 104,
+        "endNode": 111
+      },
+      {
+        "id": 198,
+        "startNode": 111,
+        "endNode": 118
+      },
+      {
+        "id": 199,
+        "startNode": 7,
+        "endNode": 14
+      },
+      {
+        "id": 200,
+        "startNode": 14,
+        "endNode": 21
+      },
+      {
+        "id": 201,
+        "startNode": 21,
+        "endNode": 28
+      },
+      {
+        "id": 202,
+        "startNode": 28,
+        "endNode": 35
+      },
+      {
+        "id": 203,
+        "startNode": 35,
+        "endNode": 42
+      },
+      {
+        "id": 204,
+        "startNode": 42,
+        "endNode": 49
+      },
+      {
+        "id": 205,
+        "startNode": 49,
+        "endNode": 56
+      },
+      {
+        "id": 206,
+        "startNode": 56,
+        "endNode": 63
+      },
+      {
+        "id": 207,
+        "startNode": 63,
+        "endNode": 70
+      },
+      {
+        "id": 208,
+        "startNode": 70,
+        "endNode": 77
+      },
+      {
+        "id": 209,
+        "startNode": 77,
+        "endNode": 84
+      },
+      {
+        "id": 210,
+        "startNode": 84,
+        "endNode": 91
+      },
+      {
+        "id": 211,
+        "startNode": 91,
+        "endNode": 98
+      },
+      {
+        "id": 212,
+        "startNode": 98,
+        "endNode": 105
+      },
+      {
+        "id": 213,
+        "startNode": 105,
+        "endNode": 112
+      },
+      {
+        "id": 214,
+        "startNode": 112,
+        "endNode": 119
+      }
+    ],
+    "quads": [
+      {
+        "id": 1,
+        "nodes": [
+          1,
+          8,
+          9,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "nodes": [
+          2,
+          9,
+          10,
+          3
+        ]
+      },
+      {
+        "id": 3,
+        "nodes": [
+          3,
+          10,
+          11,
+          4
+        ]
+      },
+      {
+        "id": 4,
+        "nodes": [
+          4,
+          11,
+          12,
+          5
+        ]
+      },
+      {
+        "id": 5,
+        "nodes": [
+          5,
+          12,
+          13,
+          6
+        ]
+      },
+      {
+        "id": 6,
+        "nodes": [
+          6,
+          13,
+          14,
+          7
+        ]
+      },
+      {
+        "id": 7,
+        "nodes": [
+          8,
+          15,
+          16,
+          9
+        ]
+      },
+      {
+        "id": 8,
+        "nodes": [
+          9,
+          16,
+          17,
+          10
+        ]
+      },
+      {
+        "id": 9,
+        "nodes": [
+          10,
+          17,
+          18,
+          11
+        ]
+      },
+      {
+        "id": 10,
+        "nodes": [
+          11,
+          18,
+          19,
+          12
+        ]
+      },
+      {
+        "id": 11,
+        "nodes": [
+          12,
+          19,
+          20,
+          13
+        ]
+      },
+      {
+        "id": 12,
+        "nodes": [
+          13,
+          20,
+          21,
+          14
+        ]
+      },
+      {
+        "id": 13,
+        "nodes": [
+          15,
+          22,
+          23,
+          16
+        ]
+      },
+      {
+        "id": 14,
+        "nodes": [
+          16,
+          23,
+          24,
+          17
+        ]
+      },
+      {
+        "id": 15,
+        "nodes": [
+          17,
+          24,
+          25,
+          18
+        ]
+      },
+      {
+        "id": 16,
+        "nodes": [
+          18,
+          25,
+          26,
+          19
+        ]
+      },
+      {
+        "id": 17,
+        "nodes": [
+          19,
+          26,
+          27,
+          20
+        ]
+      },
+      {
+        "id": 18,
+        "nodes": [
+          20,
+          27,
+          28,
+          21
+        ]
+      },
+      {
+        "id": 19,
+        "nodes": [
+          22,
+          29,
+          30,
+          23
+        ]
+      },
+      {
+        "id": 20,
+        "nodes": [
+          23,
+          30,
+          31,
+          24
+        ]
+      },
+      {
+        "id": 21,
+        "nodes": [
+          24,
+          31,
+          32,
+          25
+        ]
+      },
+      {
+        "id": 22,
+        "nodes": [
+          25,
+          32,
+          33,
+          26
+        ]
+      },
+      {
+        "id": 23,
+        "nodes": [
+          26,
+          33,
+          34,
+          27
+        ]
+      },
+      {
+        "id": 24,
+        "nodes": [
+          27,
+          34,
+          35,
+          28
+        ]
+      },
+      {
+        "id": 25,
+        "nodes": [
+          29,
+          36,
+          37,
+          30
+        ]
+      },
+      {
+        "id": 26,
+        "nodes": [
+          30,
+          37,
+          38,
+          31
+        ]
+      },
+      {
+        "id": 27,
+        "nodes": [
+          31,
+          38,
+          39,
+          32
+        ]
+      },
+      {
+        "id": 28,
+        "nodes": [
+          32,
+          39,
+          40,
+          33
+        ]
+      },
+      {
+        "id": 29,
+        "nodes": [
+          33,
+          40,
+          41,
+          34
+        ]
+      },
+      {
+        "id": 30,
+        "nodes": [
+          34,
+          41,
+          42,
+          35
+        ]
+      },
+      {
+        "id": 31,
+        "nodes": [
+          36,
+          43,
+          44,
+          37
+        ]
+      },
+      {
+        "id": 32,
+        "nodes": [
+          37,
+          44,
+          45,
+          38
+        ]
+      },
+      {
+        "id": 33,
+        "nodes": [
+          38,
+          45,
+          46,
+          39
+        ]
+      },
+      {
+        "id": 34,
+        "nodes": [
+          39,
+          46,
+          47,
+          40
+        ]
+      },
+      {
+        "id": 35,
+        "nodes": [
+          40,
+          47,
+          48,
+          41
+        ]
+      },
+      {
+        "id": 36,
+        "nodes": [
+          41,
+          48,
+          49,
+          42
+        ]
+      },
+      {
+        "id": 37,
+        "nodes": [
+          43,
+          50,
+          51,
+          44
+        ]
+      },
+      {
+        "id": 38,
+        "nodes": [
+          44,
+          51,
+          52,
+          45
+        ]
+      },
+      {
+        "id": 39,
+        "nodes": [
+          45,
+          52,
+          53,
+          46
+        ]
+      },
+      {
+        "id": 40,
+        "nodes": [
+          46,
+          53,
+          54,
+          47
+        ]
+      },
+      {
+        "id": 41,
+        "nodes": [
+          47,
+          54,
+          55,
+          48
+        ]
+      },
+      {
+        "id": 42,
+        "nodes": [
+          48,
+          55,
+          56,
+          49
+        ]
+      },
+      {
+        "id": 43,
+        "nodes": [
+          50,
+          57,
+          58,
+          51
+        ]
+      },
+      {
+        "id": 44,
+        "nodes": [
+          51,
+          58,
+          59,
+          52
+        ]
+      },
+      {
+        "id": 45,
+        "nodes": [
+          52,
+          59,
+          60,
+          53
+        ]
+      },
+      {
+        "id": 46,
+        "nodes": [
+          53,
+          60,
+          61,
+          54
+        ]
+      },
+      {
+        "id": 47,
+        "nodes": [
+          54,
+          61,
+          62,
+          55
+        ]
+      },
+      {
+        "id": 48,
+        "nodes": [
+          55,
+          62,
+          63,
+          56
+        ]
+      },
+      {
+        "id": 49,
+        "nodes": [
+          57,
+          64,
+          65,
+          58
+        ]
+      },
+      {
+        "id": 50,
+        "nodes": [
+          58,
+          65,
+          66,
+          59
+        ]
+      },
+      {
+        "id": 51,
+        "nodes": [
+          59,
+          66,
+          67,
+          60
+        ]
+      },
+      {
+        "id": 52,
+        "nodes": [
+          60,
+          67,
+          68,
+          61
+        ]
+      },
+      {
+        "id": 53,
+        "nodes": [
+          61,
+          68,
+          69,
+          62
+        ]
+      },
+      {
+        "id": 54,
+        "nodes": [
+          62,
+          69,
+          70,
+          63
+        ]
+      },
+      {
+        "id": 55,
+        "nodes": [
+          64,
+          71,
+          72,
+          65
+        ]
+      },
+      {
+        "id": 56,
+        "nodes": [
+          65,
+          72,
+          73,
+          66
+        ]
+      },
+      {
+        "id": 57,
+        "nodes": [
+          66,
+          73,
+          74,
+          67
+        ]
+      },
+      {
+        "id": 58,
+        "nodes": [
+          67,
+          74,
+          75,
+          68
+        ]
+      },
+      {
+        "id": 59,
+        "nodes": [
+          68,
+          75,
+          76,
+          69
+        ]
+      },
+      {
+        "id": 60,
+        "nodes": [
+          69,
+          76,
+          77,
+          70
+        ]
+      },
+      {
+        "id": 61,
+        "nodes": [
+          71,
+          78,
+          79,
+          72
+        ]
+      },
+      {
+        "id": 62,
+        "nodes": [
+          72,
+          79,
+          80,
+          73
+        ]
+      },
+      {
+        "id": 63,
+        "nodes": [
+          73,
+          80,
+          81,
+          74
+        ]
+      },
+      {
+        "id": 64,
+        "nodes": [
+          74,
+          81,
+          82,
+          75
+        ]
+      },
+      {
+        "id": 65,
+        "nodes": [
+          75,
+          82,
+          83,
+          76
+        ]
+      },
+      {
+        "id": 66,
+        "nodes": [
+          76,
+          83,
+          84,
+          77
+        ]
+      },
+      {
+        "id": 67,
+        "nodes": [
+          78,
+          85,
+          86,
+          79
+        ]
+      },
+      {
+        "id": 68,
+        "nodes": [
+          79,
+          86,
+          87,
+          80
+        ]
+      },
+      {
+        "id": 69,
+        "nodes": [
+          80,
+          87,
+          88,
+          81
+        ]
+      },
+      {
+        "id": 70,
+        "nodes": [
+          81,
+          88,
+          89,
+          82
+        ]
+      },
+      {
+        "id": 71,
+        "nodes": [
+          82,
+          89,
+          90,
+          83
+        ]
+      },
+      {
+        "id": 72,
+        "nodes": [
+          83,
+          90,
+          91,
+          84
+        ]
+      },
+      {
+        "id": 73,
+        "nodes": [
+          85,
+          92,
+          93,
+          86
+        ]
+      },
+      {
+        "id": 74,
+        "nodes": [
+          86,
+          93,
+          94,
+          87
+        ]
+      },
+      {
+        "id": 75,
+        "nodes": [
+          87,
+          94,
+          95,
+          88
+        ]
+      },
+      {
+        "id": 76,
+        "nodes": [
+          88,
+          95,
+          96,
+          89
+        ]
+      },
+      {
+        "id": 77,
+        "nodes": [
+          89,
+          96,
+          97,
+          90
+        ]
+      },
+      {
+        "id": 78,
+        "nodes": [
+          90,
+          97,
+          98,
+          91
+        ]
+      },
+      {
+        "id": 79,
+        "nodes": [
+          92,
+          99,
+          100,
+          93
+        ]
+      },
+      {
+        "id": 80,
+        "nodes": [
+          93,
+          100,
+          101,
+          94
+        ]
+      },
+      {
+        "id": 81,
+        "nodes": [
+          94,
+          101,
+          102,
+          95
+        ]
+      },
+      {
+        "id": 82,
+        "nodes": [
+          95,
+          102,
+          103,
+          96
+        ]
+      },
+      {
+        "id": 83,
+        "nodes": [
+          96,
+          103,
+          104,
+          97
+        ]
+      },
+      {
+        "id": 84,
+        "nodes": [
+          97,
+          104,
+          105,
+          98
+        ]
+      },
+      {
+        "id": 85,
+        "nodes": [
+          99,
+          106,
+          107,
+          100
+        ]
+      },
+      {
+        "id": 86,
+        "nodes": [
+          100,
+          107,
+          108,
+          101
+        ]
+      },
+      {
+        "id": 87,
+        "nodes": [
+          101,
+          108,
+          109,
+          102
+        ]
+      },
+      {
+        "id": 88,
+        "nodes": [
+          102,
+          109,
+          110,
+          103
+        ]
+      },
+      {
+        "id": 89,
+        "nodes": [
+          103,
+          110,
+          111,
+          104
+        ]
+      },
+      {
+        "id": 90,
+        "nodes": [
+          104,
+          111,
+          112,
+          105
+        ]
+      },
+      {
+        "id": 91,
+        "nodes": [
+          106,
+          113,
+          114,
+          107
+        ]
+      },
+      {
+        "id": 92,
+        "nodes": [
+          107,
+          114,
+          115,
+          108
+        ]
+      },
+      {
+        "id": 93,
+        "nodes": [
+          108,
+          115,
+          116,
+          109
+        ]
+      },
+      {
+        "id": 94,
+        "nodes": [
+          109,
+          116,
+          117,
+          110
+        ]
+      },
+      {
+        "id": 95,
+        "nodes": [
+          110,
+          117,
+          118,
+          111
+        ]
+      },
+      {
+        "id": 96,
+        "nodes": [
+          111,
+          118,
+          119,
+          112
+        ]
+      }
+    ],
+    "sourceLabel": "Sample: 17 × 7 joint quad grillage, 40 m × 10.8 m",
+    "loadTransfer": "four-node-bilinear",
+    "nodeToleranceM": 0.02,
+    "gridToleranceM": 0.05,
+    "trackTrackPoints": 8
+  },
+  "moving": {
+    "typeNumber": 1,
+    "positionCount": 30,
+    "startLongitudinalM": 0,
+    "direction": 1,
+    "incrementM": 1,
+    "representation": "axle-load-width",
+    "trackSlices": 8,
+    "impactEnabled": false,
+    "impactFactor": 0,
+    "impactNote": "",
+    "emitLoadCaseAnchor": true,
+    "anchorLoadCaseNumber": 100,
+    "anchorTitle": "IRC MOVING LOAD",
+    "emitUnitCommand": true
+  },
+  "settings": {
+    "projectName": "Sample: 40 m two-lane bridge",
+    "projectNumber": "SAMPLE-001",
+    "engineer": "Verification set",
+    "staadVersion": "2022",
+    "workflow": "static",
+    "coordMapping": {
+      "longitudinalAxis": "X",
+      "transverseAxis": "Z",
+      "verticalAxis": "Y",
+      "longitudinalSign": 1,
+      "transverseSign": 1,
+      "verticalSign": 1,
+      "originXM": 0,
+      "originYM": 0,
+      "originZM": 0,
+      "rotationDeg": 0
+    },
+    "deckLevelNote": "",
+    "emitComments": true,
+    "maxLineLength": 120,
+    "emitUnitCommand": true,
+    "snapStepM": 0.5,
+    "showModelNodes": true,
+    "staticCaseStart": 301,
+    "staticLoadType": "LIVE"
+  }
+}

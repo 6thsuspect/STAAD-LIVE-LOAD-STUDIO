@@ -1,0 +1,40 @@
+STAAD SPACE
+* ============================================================
+* STAAD.Pro IRC Live Load Studio — generated input
+* Project : Moving-load sample: 40 m two-lane bridge
+* Workflow: MOVING-LOAD GENERATION
+* Target  : STAAD.Pro 2022 — adapter status: unverified
+* Mapping : Xd → +X, Zd → +Z, Yd → +Y, origin (0, 0, 0) m, rotation 0°
+* Units   : metres and kilonewtons
+* ------------------------------------------------------------
+* NOTICE  : generated syntax has not been executed in a licensed STAAD.Pro
+*           installation. Verify before design use. See README release gates.
+* ============================================================
+UNIT METER KN
+
+* Moving-load grammar: DEFINE MOVING LOAD / TYPE n LOAD … DISTANCE … [WIDTH …]; LOAD GENERATION n / TYPE t x y z XINC|ZINC increment
+* Mapping: Xd → +X, Zd → +Z, Yd → +Y, origin (0, 0, 0) m, rotation 0°
+
+* V1 | IRC Class A | 554 kN | IRC:6-2017 Cl. 204.3, Fig. 2, Table 2
+* Definition 1 — vehicle centreline; datum Axle 1 (27 kN) line, vehicle centreline.
+* 8 loads, 7 inter-load distances.
+DEFINE MOVING LOAD
+TYPE 1 LOAD 27 27 114 114 68 68 68 68 DISTANCE 1.1 3.2 1.2 4.3 3 3 3 WIDTH 2.3
+LOAD 100 LOADTYPE LIVE TITLE IRC MOVING LOAD V1
+* 20 positions, 1 m increments, +Xd, reference = first load of definition 1.
+LOAD GENERATION 20
+TYPE 1 3.6 0 2.25 XINC 1
+
+* V2 | IRC Class 70R (wheeled) | 1000 kN | IRC:6-2017 Cl. 204.1, Fig. 1
+* Definition 3 — vehicle centreline; datum Axle 1 (80 kN) line, vehicle centreline.
+* 7 loads, 6 inter-load distances.
+DEFINE MOVING LOAD
+TYPE 3 LOAD 80 120 120 170 170 170 170 DISTANCE 3.96 1.52 2.13 1.37 3.05 1.37 WIDTH 2.9
+LOAD 101 LOADTYPE LIVE TITLE IRC MOVING LOAD V2
+* 20 positions, 1 m increments, +Xd, reference = first load of definition 3.
+LOAD GENERATION 20
+TYPE 3 3.3 0 -2.25 XINC 1
+
+* ------------------------------------------------------------
+* End of generated vehicle load input.
+* Independent engineering verification is required before use.
