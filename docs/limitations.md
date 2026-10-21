@@ -90,7 +90,17 @@ Not implemented:
 * Contact patches for the 70R wheeled/bogie definitions are nominal (see
   [vehicle-data.md](vehicle-data.md)).
 
-## 6. Browser and environment
+## 6. Appearance
+
+* The plan is drawn with explicit per-theme colours rather than CSS variables, because SVG renderers
+  disagree on `var()` inside presentation attributes. If you change `src/index.css` colours, change
+  `src/lib/theme.ts` to match for the plan.
+* Printed output of the plan is a raster/vector export of the chosen theme; there is no separate
+  print stylesheet.
+* Light mode darkens vehicle colours for contrast. The stored palette colour is unchanged, so exports
+  and the project file are identical in both themes.
+
+## 7. Browser and environment
 
 * Persistence uses `localStorage`; clearing site data removes the saved project. Use `Export JSON` for
   durable records.

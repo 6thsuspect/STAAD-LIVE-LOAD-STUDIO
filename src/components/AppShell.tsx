@@ -15,6 +15,8 @@ import { LoadConfigPanel } from "./panels/LoadConfigPanel";
 import { ValidationPanel } from "./panels/ValidationPanel";
 import { SettingsPanel } from "./panels/SettingsPanel";
 import { Button, Segmented, Splitter, StatusDot } from "./ui";
+import { ThemeToggle } from "./ThemeToggle";
+import { useResolvedTheme } from "../lib/useTheme";
 
 const TABS: Array<{ id: TabId; label: string; hint: string }> = [
   { id: "placement", label: "Vehicle Placement", hint: "Deck plan, placement and syntax preview" },
@@ -26,6 +28,9 @@ const TABS: Array<{ id: TabId; label: string; hint: string }> = [
 ];
 
 export function AppShell() {
+  // Applying the theme here means it is correct on every tab, not only where
+  // the plan canvas is mounted.
+  useResolvedTheme();
   const state = useStudio();
   const project = currentProject(state);
   const diagnostics = useMemo(() => computeDiagnostics(project), [project]);
@@ -136,6 +141,7 @@ export function AppShell() {
           <Button size="xs" onClick={() => setShowRight((v) => !v)} title="Toggle inspector" className="hidden lg:inline-flex">
             {showRight ? "◨" : "◧"}
           </Button>
+          <ThemeToggle />
           <Button size="xs" onClick={exportStaad}>Export .std</Button>
           <Button size="xs" variant="ghost" onClick={state.loadSample}>Sample</Button>
           <Button size="xs" variant="primary" onClick={state.saveLocal} title="Save to browser (Ctrl+S)">Save</Button>
@@ -299,11 +305,11 @@ export function AppShell() {
 function Logo() {
   return (
     <svg viewBox="0 0 28 28" className="h-7 w-7" aria-hidden>
-      <rect x="1" y="1" width="26" height="26" rx="5" fill="#0e1622" stroke="#1f2f43" />
-      <path d="M5 20h18" stroke="#38d6e6" strokeWidth="1.4" strokeLinecap="round" />
-      <path d="M5 20 8 12h12l3 8" stroke="#38d6e6" strokeWidth="1.2" strokeLinejoin="round" opacity="0.55" />
-      <rect x="11" y="8" width="6" height="4" rx="1" fill="#f5b544" opacity="0.9" />
-      <path d="M14 8V4" stroke="#f5b544" strokeWidth="1.2" strokeLinecap="round" />
+      <rect x="1" y="1" width="26" height="26" rx="5" className="fill-ink-850 stroke-ink-600" />
+      <path d="M5 20h18" className="stroke-cyan-400" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M5 20 8 12h12l3 8" className="stroke-cyan-400" strokeWidth="1.2" strokeLinejoin="round" opacity="0.55" />
+      <rect x="11" y="8" width="6" height="4" rx="1" className="fill-signal-amber" opacity="0.9" />
+      <path d="M14 8V4" className="stroke-signal-amber" strokeWidth="1.2" strokeLinecap="round" />
     </svg>
   );
 }

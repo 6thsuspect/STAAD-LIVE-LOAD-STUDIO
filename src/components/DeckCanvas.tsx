@@ -17,6 +17,7 @@ import {
 import { buildTransferContext } from "../lib/syntax/transfer";
 import { fmt } from "../lib/units";
 import { NodeOverlay } from "./NodeOverlay";
+import { useCanvasPalette } from "../lib/useTheme";
 
 /**
  * Scaled SVG deck plan.
@@ -57,6 +58,7 @@ function screen(p: Point2): { x: number; y: number } {
 }
 
 export function DeckCanvas() {
+  const palette = useCanvasPalette();
   const deck = useStudio((s) => s.deck);
   const vehicles = useStudio((s) => s.vehicles);
   const placements = useStudio((s) => s.placements);
@@ -534,7 +536,7 @@ export function DeckCanvas() {
         </div>
       </div>
 
-      <div ref={containerRef} className="relative min-h-0 flex-1 overflow-hidden bg-[#081019]">
+      <div ref={containerRef} className="relative min-h-0 flex-1 overflow-hidden bg-canvas">
         <svg
           ref={svgRef}
           className="h-full w-full touch-none"
@@ -554,12 +556,12 @@ export function DeckCanvas() {
         >
           <defs>
             <pattern id="barrier-hatch" width="0.28" height="0.28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="0.28" height="0.28" fill="#1b2735" />
-              <line x1="0" y1="0" x2="0" y2="0.28" stroke="#3a4f68" strokeWidth="0.09" />
+              <rect width="0.28" height="0.28" fill={palette.barrierHatchFill} />
+              <line x1="0" y1="0" x2="0" y2="0.28" stroke={palette.barrierHatchLine} strokeWidth="0.09" />
             </pattern>
             <pattern id="track-hatch" width="0.22" height="0.22" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
-              <rect width="0.22" height="0.22" fill="rgba(56,214,230,0.16)" />
-              <line x1="0" y1="0" x2="0" y2="0.22" stroke="rgba(56,214,230,0.5)" strokeWidth="0.06" />
+              <rect width="0.22" height="0.22" fill={palette.trackHatchFill} />
+              <line x1="0" y1="0" x2="0" y2="0.22" stroke={palette.trackHatchLine} strokeWidth="0.06" />
             </pattern>
             {/* Dimension ends are drawn as explicit screen-space ticks: marker
                 rendering is inconsistent across renderers, ticks are not. */}
@@ -568,29 +570,35 @@ export function DeckCanvas() {
           {/* grid */}
           <g aria-hidden>
             {gridLines.verticals.map((x) => (
-              <line key={`gv-${x}`} className="plan-grid" strokeWidth={px(1)} x1={x} y1={viewBox.y} x2={x} y2={viewBox.y + viewBox.height} />
+              <line key={`gv-${x}`} className="plan-grid" stroke={palette.grid} strokeWidth={px(1)} x1={x} y1={viewBox.y} x2={x} y2={viewBox.y + viewBox.height} />
             ))}
             {gridLines.horizontals.map((y) => (
-              <line key={`gh-${y}`} className="plan-grid" strokeWidth={px(1)} x1={viewBox.x} y1={y} x2={viewBox.x + viewBox.width} y2={y} />
+              <line key={`gh-${y}`} className="plan-grid" stroke={palette.grid} strokeWidth={px(1)} x1={viewBox.x} y1={y} x2={viewBox.x + viewBox.width} y2={y} />
             ))}
           </g>
 
           {/* deck */}
-          <polygon className="plan-deck" strokeWidth={px(1.2)} points={deckCorners.map((p) => `${p.x},${p.y}`).join(" ")} />
+          <polygon
+            className="plan-deck"
+            fill={palette.deckFill}
+            stroke={palette.deckStroke}
+            strokeWidth={px(1.2)}
+            points={deckCorners.map((p) => `${p.x},${p.y}`).join(" ")}
+          />
 
           {/* footpath bands */}
           <g aria-hidden>
             {deck.leftFootpathWidthM > 0 && (
-              <rect {...bandRect(layout.leftBarrierInnerZd, layout.leftBarrierInnerZd - deck.leftFootpathWidthM)} fill="#1a2836" stroke="rgba(120,165,210,0.16)" strokeWidth={px(0.8)} />
+              <rect {...bandRect(layout.leftBarrierInnerZd, layout.leftBarrierInnerZd - deck.leftFootpathWidthM)} fill={palette.footpathFill} stroke={palette.footpathStroke} strokeWidth={px(0.8)} />
             )}
             {deck.rightFootpathWidthM > 0 && (
-              <rect {...bandRect(layout.rightBarrierInnerZd, layout.rightBarrierInnerZd + deck.rightFootpathWidthM)} fill="#1a2836" stroke="rgba(120,165,210,0.16)" strokeWidth={px(0.8)} />
+              <rect {...bandRect(layout.rightBarrierInnerZd, layout.rightBarrierInnerZd + deck.rightFootpathWidthM)} fill={palette.footpathFill} stroke={palette.footpathStroke} strokeWidth={px(0.8)} />
             )}
             {deck.leftKerbWidthM > 0 && (
-              <rect {...bandRect(layout.leftBarrierInnerZd - deck.leftFootpathWidthM, layout.leftCarriagewayEdgeZd)} fill="#22303f" />
+              <rect {...bandRect(layout.leftBarrierInnerZd - deck.leftFootpathWidthM, layout.leftCarriagewayEdgeZd)} fill={palette.kerbFill} />
             )}
             {deck.rightKerbWidthM > 0 && (
-              <rect {...bandRect(layout.rightBarrierInnerZd + deck.rightFootpathWidthM, layout.rightCarriagewayEdgeZd)} fill="#22303f" />
+              <rect {...bandRect(layout.rightBarrierInnerZd + deck.rightFootpathWidthM, layout.rightCarriagewayEdgeZd)} fill={palette.kerbFill} />
             )}
           </g>
 
@@ -598,7 +606,8 @@ export function DeckCanvas() {
           <rect
             {...bandRect(layout.leftCarriagewayEdgeZd, layout.rightCarriagewayEdgeZd)}
             className="plan-surface"
-            fill="#132030"
+            fill={palette.surfaceFill}
+            stroke={palette.surfaceStroke}
             strokeWidth={px(1)}
           />
 
@@ -607,7 +616,7 @@ export function DeckCanvas() {
             <rect
               {...bandRect(layout.leftDeckEdgeZd, layout.leftBarrierInnerZd)}
               fill="url(#barrier-hatch)"
-              stroke="rgba(120,165,210,0.45)"
+              stroke={palette.barrierStroke}
               strokeWidth={px(1)}
              
             />
@@ -616,7 +625,7 @@ export function DeckCanvas() {
             <rect
               {...bandRect(layout.rightDeckEdgeZd, layout.rightBarrierInnerZd)}
               fill="url(#barrier-hatch)"
-              stroke="rgba(120,165,210,0.45)"
+              stroke={palette.barrierStroke}
               strokeWidth={px(1)}
              
             />
@@ -631,20 +640,20 @@ export function DeckCanvas() {
                 y1={-lane.centreZd}
                 x2={deck.spanM}
                 y2={-lane.centreZd}
-                stroke="rgba(148,180,214,0.16)"
+                stroke={palette.laneDash}
                 strokeWidth={px(1)}
                 strokeDasharray={`${px(10)} ${px(8)}`}
                
               />
             ))}
-            <line x1={0} y1={-layout.leftCarriagewayEdgeZd} x2={deck.spanM} y2={-layout.leftCarriagewayEdgeZd} stroke="rgba(160,196,232,0.55)" strokeWidth={px(1.2)} />
-            <line x1={0} y1={-layout.rightCarriagewayEdgeZd} x2={deck.spanM} y2={-layout.rightCarriagewayEdgeZd} stroke="rgba(160,196,232,0.55)" strokeWidth={px(1.2)} />
+            <line x1={0} y1={-layout.leftCarriagewayEdgeZd} x2={deck.spanM} y2={-layout.leftCarriagewayEdgeZd} stroke={palette.edgeLine} strokeWidth={px(1.2)} />
+            <line x1={0} y1={-layout.rightCarriagewayEdgeZd} x2={deck.spanM} y2={-layout.rightCarriagewayEdgeZd} stroke={palette.edgeLine} strokeWidth={px(1.2)} />
             <line
               x1={0}
               y1={0}
               x2={deck.spanM}
               y2={0}
-              stroke="rgba(56,214,230,0.4)"
+              stroke={palette.centreline}
               strokeWidth={px(1.2)}
               strokeDasharray={`${px(18)} ${px(5)} ${px(3)} ${px(5)}`}
              
@@ -659,7 +668,7 @@ export function DeckCanvas() {
               y={-lane.centreZd + px(3.5)}
               fontSize={px(9)}
               className="plan-text"
-              fill="#4a6a86"
+              fill={palette.laneLabel}
             >
               L{lane.index + 1} · {fmt(lane.widthM)} m
             </text>
@@ -688,7 +697,7 @@ export function DeckCanvas() {
                   key={`ghost-${index}`}
                   points={fp.bodyCorners.map((c) => { const p = screen(c); return `${p.x},${p.y}`; }).join(" ")}
                   fill="none"
-                  stroke={selected.color}
+                  stroke={palette.vehicle(selected.color)}
                   strokeOpacity={0.2}
                   strokeWidth={px(1)}
                   strokeDasharray={`${px(3)} ${px(3)}`}
@@ -760,32 +769,32 @@ export function DeckCanvas() {
 
           {/* axis triad */}
           <g transform={`translate(${viewBox.x + px(46)}, ${viewBox.y + viewBox.height - px(46)})`} aria-hidden>
-            <line x1={0} y1={0} x2={px(28)} y2={0} stroke="#38d6e6" strokeWidth={px(1.4)} />
-            <path d={`M ${px(32)} 0 L ${px(25)} ${-px(3)} L ${px(25)} ${px(3)} Z`} fill="#38d6e6" />
-            <line x1={0} y1={0} x2={0} y2={-px(28)} stroke="#f5b544" strokeWidth={px(1.4)} />
-            <path d={`M 0 ${-px(32)} L ${-px(3)} ${-px(25)} L ${px(3)} ${-px(25)} Z`} fill="#f5b544" />
-            <text x={px(34)} y={px(3.5)} fontSize={px(9.5)} fill="#38d6e6">Xd → {settings.coordMapping.longitudinalSign > 0 ? "+" : "−"}{settings.coordMapping.longitudinalAxis}</text>
-            <text x={px(5)} y={-px(34)} fontSize={px(9.5)} fill="#f5b544">Zd → {settings.coordMapping.transverseSign > 0 ? "+" : "−"}{settings.coordMapping.transverseAxis}</text>
-            <text x={px(5)} y={px(13)} fontSize={px(8.5)} fill="#475569">deck origin (0, 0)</text>
+            <line x1={0} y1={0} x2={px(28)} y2={0} stroke={palette.axisX} strokeWidth={px(1.4)} />
+            <path d={`M ${px(32)} 0 L ${px(25)} ${-px(3)} L ${px(25)} ${px(3)} Z`} fill={palette.axisX} />
+            <line x1={0} y1={0} x2={0} y2={-px(28)} stroke={palette.axisZ} strokeWidth={px(1.4)} />
+            <path d={`M 0 ${-px(32)} L ${-px(3)} ${-px(25)} L ${px(3)} ${-px(25)} Z`} fill={palette.axisZ} />
+            <text x={px(34)} y={px(3.5)} fontSize={px(9.5)} fill={palette.axisX}>Xd → {settings.coordMapping.longitudinalSign > 0 ? "+" : "−"}{settings.coordMapping.longitudinalAxis}</text>
+            <text x={px(5)} y={-px(34)} fontSize={px(9.5)} fill={palette.axisZ}>Zd → {settings.coordMapping.transverseSign > 0 ? "+" : "−"}{settings.coordMapping.transverseAxis}</text>
+            <text x={px(5)} y={px(13)} fontSize={px(8.5)} fill={palette.originText}>deck origin (0, 0)</text>
           </g>
 
           {/* scale bar */}
           <g transform={`translate(${viewBox.x + viewBox.width - px(120)}, ${viewBox.y + viewBox.height - px(24)})`} aria-hidden>
-            <rect x={0} y={-px(2)} width={px(100)} height={px(4)} fill="none" stroke="#334155" strokeWidth={px(1)} />
-            <rect x={0} y={-px(2)} width={px(50)} height={px(4)} fill="#475569" />
-            <rect x={px(50)} y={-px(2)} width={px(50)} height={px(4)} fill="none" stroke="#475569" strokeWidth={px(1)} />
-            <text x={0} y={-px(6)} fontSize={px(8.5)} fill="#64748b">0</text>
-            <text x={px(100)} y={-px(6)} fontSize={px(8.5)} fill="#64748b" textAnchor="end">{gridStep * 5} m</text>
+            <rect x={0} y={-px(2)} width={px(100)} height={px(4)} fill="none" stroke={palette.scaleStroke} strokeWidth={px(1)} />
+            <rect x={0} y={-px(2)} width={px(50)} height={px(4)} fill={palette.scaleFill} />
+            <rect x={px(50)} y={-px(2)} width={px(50)} height={px(4)} fill="none" stroke={palette.scaleFill} strokeWidth={px(1)} />
+            <text x={0} y={-px(6)} fontSize={px(8.5)} fill={palette.scaleText}>0</text>
+            <text x={px(100)} y={-px(6)} fontSize={px(8.5)} fill={palette.scaleText} textAnchor="end">{gridStep * 5} m</text>
           </g>
 
           {/* hover/place indicator */}
           {tool === "place" && hoverDeck && (
             <g pointerEvents="none">
-              <line x1={hoverDeck.xd} y1={viewBox.y} x2={hoverDeck.xd} y2={viewBox.y + viewBox.height} stroke="#f5b544" strokeWidth={px(1)} strokeDasharray={`${px(3)} ${px(3)}`} />
-              <line x1={viewBox.x} y1={-hoverDeck.zd} x2={viewBox.x + viewBox.width} y2={-hoverDeck.zd} stroke="#f5b544" strokeWidth={px(1)} strokeDasharray={`${px(3)} ${px(3)}`} />
-              <circle cx={hoverDeck.xd} cy={-hoverDeck.zd} r={px(4)} fill="#f5b544" />
-              <text x={hoverDeck.xd + px(8)} y={-hoverDeck.zd - px(7)} fontSize={px(9.5)} fill="#f5b544" className="mono">
-                {fmt(hoverDeck.xd, 2)}, {fmt(hoverDeck.zd, 2)} m
+              <line x1={hoverDeck.xd} y1={viewBox.y} x2={hoverDeck.xd} y2={viewBox.y + viewBox.height} stroke={palette.hover} strokeWidth={px(1)} strokeDasharray={`${px(3)} ${px(3)}`} />
+              <line x1={viewBox.x} y1={-hoverDeck.zd} x2={viewBox.x + viewBox.width} y2={-hoverDeck.zd} stroke={palette.hover} strokeWidth={px(1)} strokeDasharray={`${px(3)} ${px(3)}`} />
+              <circle cx={hoverDeck.xd} cy={-hoverDeck.zd} r={px(4)} fill={palette.hover} />
+              <text x={hoverDeck.xd + px(8)} y={-hoverDeck.zd - px(7)} fontSize={px(9.5)} fill={palette.hover} className="mono">
+                Xd {fmt(hoverDeck.xd, 2)} · Zd {fmt(hoverDeck.zd, 2)}
               </text>
             </g>
           )}
@@ -824,7 +833,8 @@ function ToolButton({
       type="button"
       title={title}
       onClick={onClick}
-      className={`flex h-6 min-w-6 items-center justify-center rounded border px-1.5 text-[11px] font-medium transition ${
+      aria-pressed={active}
+      className={`flex h-6 min-w-6 items-center justify-center rounded border px-1.5 text-[11px] font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/40 ${
         active
           ? "border-cyan-400/40 bg-cyan-500/15 text-cyan-200"
           : "border-white/10 bg-ink-800 text-slate-400 hover:border-white/20 hover:text-slate-200"
@@ -850,17 +860,18 @@ function DimensionLine({
   text: string;
   px: (v: number) => number;
 }) {
+  const palette = useCanvasPalette();
   const tick = px(4);
   if (direction === "horizontal") {
     const y = from.y + offset;
     return (
       <g>
-        <line x1={from.x} y1={y} x2={to.x} y2={y} stroke="#475569" strokeWidth={px(1)} />
-        <line x1={from.x} y1={y - tick} x2={from.x} y2={y + tick} stroke="#64748b" strokeWidth={px(1.2)} />
-        <line x1={to.x} y1={y - tick} x2={to.x} y2={y + tick} stroke="#64748b" strokeWidth={px(1.2)} />
-        <line x1={from.x} y1={from.y} x2={from.x} y2={y + Math.sign(offset) * px(3)} stroke="#334155" strokeWidth={px(0.8)} />
-        <line x1={to.x} y1={to.y} x2={to.x} y2={y + Math.sign(offset) * px(3)} stroke="#334155" strokeWidth={px(0.8)} />
-        <text x={(from.x + to.x) / 2} y={y - px(5)} fontSize={px(9.5)} fill="#7f95ad" textAnchor="middle" className="mono">
+        <line x1={from.x} y1={y} x2={to.x} y2={y} stroke={palette.dim} strokeWidth={px(1)} />
+        <line x1={from.x} y1={y - tick} x2={from.x} y2={y + tick} stroke={palette.dimTick} strokeWidth={px(1.2)} />
+        <line x1={to.x} y1={y - tick} x2={to.x} y2={y + tick} stroke={palette.dimTick} strokeWidth={px(1.2)} />
+        <line x1={from.x} y1={from.y} x2={from.x} y2={y + Math.sign(offset) * px(3)} stroke={palette.dimExt} strokeWidth={px(0.8)} />
+        <line x1={to.x} y1={to.y} x2={to.x} y2={y + Math.sign(offset) * px(3)} stroke={palette.dimExt} strokeWidth={px(0.8)} />
+        <text x={(from.x + to.x) / 2} y={y - px(5)} fontSize={px(9.5)} fill={palette.dimText} textAnchor="middle" className="mono">
           {text}
         </text>
       </g>
@@ -869,16 +880,16 @@ function DimensionLine({
   const x = from.x + offset;
   return (
     <g>
-      <line x1={x} y1={from.y} x2={x} y2={to.y} stroke="#475569" strokeWidth={px(1)} />
-      <line x1={x - tick} y1={from.y} x2={x + tick} y2={from.y} stroke="#64748b" strokeWidth={px(1.2)} />
-      <line x1={x - tick} y1={to.y} x2={x + tick} y2={to.y} stroke="#64748b" strokeWidth={px(1.2)} />
-      <line x1={from.x} y1={from.y} x2={x + Math.sign(offset) * px(3)} y2={from.y} stroke="#334155" strokeWidth={px(0.8)} />
-      <line x1={to.x} y1={to.y} x2={x + Math.sign(offset) * px(3)} y2={to.y} stroke="#334155" strokeWidth={px(0.8)} />
+      <line x1={x} y1={from.y} x2={x} y2={to.y} stroke={palette.dim} strokeWidth={px(1)} />
+      <line x1={x - tick} y1={from.y} x2={x + tick} y2={from.y} stroke={palette.dimTick} strokeWidth={px(1.2)} />
+      <line x1={x - tick} y1={to.y} x2={x + tick} y2={to.y} stroke={palette.dimTick} strokeWidth={px(1.2)} />
+      <line x1={from.x} y1={from.y} x2={x + Math.sign(offset) * px(3)} y2={from.y} stroke={palette.dimExt} strokeWidth={px(0.8)} />
+      <line x1={to.x} y1={to.y} x2={x + Math.sign(offset) * px(3)} y2={to.y} stroke={palette.dimExt} strokeWidth={px(0.8)} />
       <text
         x={x - px(5)}
         y={(from.y + to.y) / 2}
         fontSize={px(9.5)}
-        fill="#7f95ad"
+        fill={palette.dimText}
         textAnchor="middle"
         className="mono"
         transform={`rotate(-90 ${x - px(5)} ${(from.y + to.y) / 2})`}
@@ -938,6 +949,8 @@ function VehicleGlyph({
     xd: (footprint.bounds.minXd + footprint.bounds.maxXd) / 2 + labelOffsetM,
     zd: (footprint.bounds.minZd + footprint.bounds.maxZd) / 2,
   });
+  const palette = useCanvasPalette();
+  const color = palette.vehicle(placement.color);
   const angle = -resolved.rotationDeg;
   const textAngle = Math.abs(angle) > 90 ? angle + 180 : angle;
 
@@ -950,11 +963,11 @@ function VehicleGlyph({
       <polygon
         className="vehicle-body"
         points={body.join(" ")}
-        fill={placement.color}
-        fillOpacity={0.06}
-        stroke={placement.color}
-        strokeOpacity={selected ? 1 : 0.8}
-        strokeWidth={px(selected ? 1.9 : 1.4)}
+        fill={color}
+        fillOpacity={palette.vehicleFillOpacity}
+        stroke={color}
+        strokeOpacity={selected ? 1 : 0.85}
+        strokeWidth={px(selected ? palette.selectedBodyStrokeWidth : palette.bodyStrokeWidth)}
       />
 
       {/* track contact patches */}
@@ -968,7 +981,7 @@ function VehicleGlyph({
             })
             .join(" ")}
           fill="url(#track-hatch)"
-          stroke={placement.color}
+          stroke={color}
           strokeOpacity={0.8}
           strokeWidth={px(1)}
          
@@ -990,9 +1003,9 @@ function VehicleGlyph({
         const roomForLoad = centreU - previous >= 2.2;
         return (
           <g key={axleId}>
-            <line x1={pa.x} y1={pa.y} x2={pb.x} y2={pb.y} stroke={placement.color} strokeOpacity={0.5} strokeWidth={px(1)} strokeDasharray={`${px(4)} ${px(3)}`} />
+            <line x1={pa.x} y1={pa.y} x2={pb.x} y2={pb.y} stroke={color} strokeOpacity={0.5} strokeWidth={px(1)} strokeDasharray={`${px(4)} ${px(3)}`} />
             {labelled && (
-              <text x={topLabel.x} y={topLabel.y} fontSize={px(8.5)} fill={placement.color} className="mono" fillOpacity={0.95} transform={`rotate(${textAngle} ${topLabel.x} ${topLabel.y})`}>
+              <text x={topLabel.x} y={topLabel.y} fontSize={px(8.5)} fill={color} className="mono" fillOpacity={0.95} transform={`rotate(${textAngle} ${topLabel.x} ${topLabel.y})`}>
                 {wheels[0].axleLabel}
               </text>
             )}
@@ -1001,7 +1014,7 @@ function VehicleGlyph({
                 x={loadLabel.x}
                 y={loadLabel.y}
                 fontSize={px(8.5)}
-                fill={placement.color}
+                fill={color}
                 fillOpacity={0.8}
                 className="mono"
                 transform={`rotate(${textAngle} ${loadLabel.x} ${loadLabel.y})`}
@@ -1019,7 +1032,7 @@ function VehicleGlyph({
         if (isPoint) {
           const p = screen({ xd: wheel.xd, zd: wheel.zd });
           return (
-            <circle key={wheel.id} cx={p.x} cy={p.y} r={px(3)} fill={placement.color} stroke="#04121b" strokeWidth={px(1)}>
+            <circle key={wheel.id} cx={p.x} cy={p.y} r={px(3)} fill={color} stroke={palette.wheelStroke} strokeWidth={px(1)}>
               <title>{`${wheel.axleLabel} · ${fmt(wheel.loadKN, 1)} kN · Xd ${fmt(wheel.xd, 2)} m, Zd ${fmt(wheel.zd, 2)} m`}</title>
             </circle>
           );
@@ -1033,9 +1046,9 @@ function VehicleGlyph({
                 return `${p.x},${p.y}`;
               })
               .join(" ")}
-            fill={placement.color}
+            fill={color}
             fillOpacity={0.85}
-            stroke="#04121b"
+            stroke={palette.wheelStroke}
             strokeWidth={px(1)}
            
           >
@@ -1046,9 +1059,9 @@ function VehicleGlyph({
 
       {/* reference point */}
       <g transform={`translate(${footprint.reference.xd}, ${-footprint.reference.zd})`}>
-        <circle r={px(4)} fill="none" stroke={placement.color} strokeWidth={px(1.2)} />
-        <line x1={-px(7)} y1={0} x2={px(7)} y2={0} stroke={placement.color} strokeWidth={px(1)} />
-        <line x1={0} y1={-px(7)} x2={0} y2={px(7)} stroke={placement.color} strokeWidth={px(1)} />
+        <circle r={px(4)} fill="none" stroke={color} strokeWidth={px(1.2)} />
+        <line x1={-px(7)} y1={0} x2={px(7)} y2={0} stroke={color} strokeWidth={px(1)} />
+        <line x1={0} y1={-px(7)} x2={0} y2={px(7)} stroke={color} strokeWidth={px(1)} />
       </g>
 
       {/* id + load label on a dark plate: no paint-order or CSS stroke needed,
@@ -1066,9 +1079,9 @@ function VehicleGlyph({
               width={plateWidth}
               height={plateHeight}
               rx={px(2)}
-              fill="#050c14"
+              fill={palette.labelPlate}
               fillOpacity={0.78}
-              stroke={placement.color}
+              stroke={color}
               strokeOpacity={0.35}
               strokeWidth={px(0.8)}
             />
@@ -1076,7 +1089,7 @@ function VehicleGlyph({
               x={labelPoint.x}
               y={labelPoint.y + px(0.5)}
               fontSize={fontSize}
-              fill={placement.color}
+              fill={color}
               textAnchor="middle"
               dominantBaseline="middle"
             >
@@ -1088,8 +1101,8 @@ function VehicleGlyph({
 
       {placement.locked && (
         <g transform={`translate(${screen({ xd: footprint.bounds.maxXd, zd: footprint.bounds.maxZd }).x - px(8)}, ${screen({ xd: footprint.bounds.maxXd, zd: footprint.bounds.maxZd }).y + px(10)})`}>
-          <rect x={-px(4)} y={-px(4)} width={px(8)} height={px(7)} rx={px(1)} fill="#0b111b" stroke={placement.color} strokeWidth={px(1)} />
-          <path d={`M ${-px(2)} ${-px(4)} v ${-px(2)} a ${px(2)} ${px(2)} 0 0 1 ${px(4)} 0 v ${px(2)}`} fill="none" stroke={placement.color} strokeWidth={px(1)} />
+          <rect x={-px(4)} y={-px(4)} width={px(8)} height={px(7)} rx={px(1)} fill={palette.lockPlate} stroke={color} strokeWidth={px(1)} />
+          <path d={`M ${-px(2)} ${-px(4)} v ${-px(2)} a ${px(2)} ${px(2)} 0 0 1 ${px(4)} 0 v ${px(2)}`} fill="none" stroke={color} strokeWidth={px(1)} />
         </g>
       )}
     </g>
@@ -1109,6 +1122,7 @@ function SelectionAnnotations({
   layout: DeckLayout;
   px: (v: number) => number;
 }) {
+  const palette = useCanvasPalette();
   const resolved = resolvePlacement(vehicle, placement, layout, 8);
   const ref = screen({ xd: footprint.reference.xd, zd: footprint.reference.zd });
   const leftClearance = layout.leftCarriagewayEdgeZd - footprint.bounds.maxZd;
@@ -1124,16 +1138,16 @@ function SelectionAnnotations({
   return (
     <g pointerEvents="none">
       {/* transverse clearance from kerb face to outer wheel edge */}
-      <line x1={clearX} y1={-boundaryZd} x2={clearX} y2={-outerZd} stroke="#f5b544" strokeWidth={px(1)} />
-      <line x1={clearX - px(3)} y1={-boundaryZd} x2={clearX + px(3)} y2={-boundaryZd} stroke="#f5b544" strokeWidth={px(1.2)} />
-      <line x1={clearX - px(3)} y1={-outerZd} x2={clearX + px(3)} y2={-outerZd} stroke="#f5b544" strokeWidth={px(1.2)} />
-      <line x1={footprint.bounds.maxXd} y1={-boundaryZd} x2={clearX + px(4)} y2={-boundaryZd} stroke="#a37528" strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
-      <line x1={footprint.bounds.maxXd} y1={-outerZd} x2={clearX + px(4)} y2={-outerZd} stroke="#a37528" strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
+      <line x1={clearX} y1={-boundaryZd} x2={clearX} y2={-outerZd} stroke={palette.clearance} strokeWidth={px(1)} />
+      <line x1={clearX - px(3)} y1={-boundaryZd} x2={clearX + px(3)} y2={-boundaryZd} stroke={palette.clearance} strokeWidth={px(1.2)} />
+      <line x1={clearX - px(3)} y1={-outerZd} x2={clearX + px(3)} y2={-outerZd} stroke={palette.clearance} strokeWidth={px(1.2)} />
+      <line x1={footprint.bounds.maxXd} y1={-boundaryZd} x2={clearX + px(4)} y2={-boundaryZd} stroke={palette.clearanceSoft} strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
+      <line x1={footprint.bounds.maxXd} y1={-outerZd} x2={clearX + px(4)} y2={-outerZd} stroke={palette.clearanceSoft} strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
       <text
         x={clearX + px(5)}
         y={(-boundaryZd - outerZd) / 2}
         fontSize={px(9)}
-        fill="#f5b544"
+        fill={palette.clearance}
         className="mono"
         dominantBaseline="middle"
       >
@@ -1141,12 +1155,12 @@ function SelectionAnnotations({
       </text>
 
       {/* longitudinal station to the reference point */}
-      <line x1={0} y1={stationY} x2={Math.max(0, ref.x)} y2={stationY} stroke="#38d6e6" strokeOpacity={0.75} strokeWidth={px(1)} />
-      <line x1={0} y1={stationY - px(3)} x2={0} y2={stationY + px(3)} stroke="#38d6e6" strokeWidth={px(1.2)} />
-      <line x1={Math.max(0, ref.x)} y1={stationY - px(3)} x2={Math.max(0, ref.x)} y2={stationY + px(3)} stroke="#38d6e6" strokeWidth={px(1.2)} />
-      <line x1={0} y1={stationY - px(4)} x2={0} y2={-footprint.bounds.maxZd} stroke="#2a7f8c" strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
-      <line x1={Math.max(0, ref.x)} y1={stationY - px(4)} x2={Math.max(0, ref.x)} y2={-footprint.bounds.maxZd} stroke="#2a7f8c" strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
-      <text x={Math.max(0, ref.x) / 2} y={stationY - px(5)} fontSize={px(9)} fill="#38d6e6" textAnchor="middle" className="mono">
+      <line x1={0} y1={stationY} x2={Math.max(0, ref.x)} y2={stationY} stroke={palette.station} strokeOpacity={0.75} strokeWidth={px(1)} />
+      <line x1={0} y1={stationY - px(3)} x2={0} y2={stationY + px(3)} stroke={palette.station} strokeWidth={px(1.2)} />
+      <line x1={Math.max(0, ref.x)} y1={stationY - px(3)} x2={Math.max(0, ref.x)} y2={stationY + px(3)} stroke={palette.station} strokeWidth={px(1.2)} />
+      <line x1={0} y1={stationY - px(4)} x2={0} y2={-footprint.bounds.maxZd} stroke={palette.stationSoft} strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
+      <line x1={Math.max(0, ref.x)} y1={stationY - px(4)} x2={Math.max(0, ref.x)} y2={-footprint.bounds.maxZd} stroke={palette.stationSoft} strokeWidth={px(0.8)} strokeDasharray={`${px(2)} ${px(3)}`} />
+      <text x={Math.max(0, ref.x) / 2} y={stationY - px(5)} fontSize={px(9)} fill={palette.station} textAnchor="middle" className="mono">
         Xd {fmt(Math.max(0, ref.x), 3)} m
       </text>
 
@@ -1155,7 +1169,7 @@ function SelectionAnnotations({
         x={ref.x}
         y={-footprint.bounds.minZd + px(14)}
         fontSize={px(8.5)}
-        fill="#7f95ad"
+        fill={palette.text}
         textAnchor="middle"
         className="mono"
       >

@@ -12,15 +12,15 @@ import App from "../../src/App";
 import { sampleProject } from "../../src/lib/project";
 import { useStudio } from "../../src/store/studio";
 
-// Mirrors the geometry-related rules in src/index.css. Stroke widths live on the
-// elements (screen-space px), never in this stylesheet.
+// Geometry-related rules from src/index.css. Colours arrive as element
+// attributes from the canvas palette, so nothing here may override them.
 const STYLE = `
-.plan-grid { stroke: rgba(120,165,210,0.07); }
-.plan-deck { fill: #0b1521; stroke: rgba(120,165,210,0.4); }
-.plan-surface { fill: #132030; stroke: rgba(120,165,210,0.28); }
 .vehicle-body { stroke-linejoin: round; }
 .plan-text, text { font-family: "DejaVu Sans Mono", monospace; }
 `;
+
+const THEME = process.env.SNAPSHOT_THEME === "light" ? "light" : "dark";
+const BACKGROUND = THEME === "light" ? "#e9edf3" : "#081019";
 
 const SIZE = { width: 1280, height: 620 };
 
@@ -56,20 +56,21 @@ describe("visual snapshot", () => {
   it("writes the deck plan to artifacts/", () => {
     useStudio.getState().loadProject(sampleProject());
     useStudio.getState().setTab("placement");
+    useStudio.getState().setThemeMode(THEME);
     const { container } = render(<App />);
     const svg = container.querySelector("svg[role='application']");
     if (!svg) throw new Error("plan svg not found");
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svg.setAttribute("width", "1280");
     svg.setAttribute("height", "620");
-    svg.setAttribute("style", "background:#081019");
+    svg.setAttribute("style", `background:${BACKGROUND}`);
     const style = document.createElement("style");
     style.textContent = STYLE;
     svg.insertBefore(style, svg.firstChild);
     const markup = svg.outerHTML;
     mkdirSync("artifacts", { recursive: true });
-    writeFileSync("artifacts/plan.svg", markup);
-    const png = new Resvg(markup, { fitTo: { mode: "width", value: 1280 }, background: "#081019" }).render().asPng();
+    writeFileSync(THEME === "light" ? "artifacts/plan-light.svg" : "artifacts/plan.svg", markup);
+    const png = new Resvg(markup, { fitTo: { mode: "width", value: 1280 }, background: BACKGROUND }).render().asPng();
     writeFileSync(process.env.SNAPSHOT_OUT ?? "artifacts/plan.png", png);
   });
 });
